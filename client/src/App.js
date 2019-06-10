@@ -9,6 +9,7 @@ import ProtectedRoute from './components/auth/protected-route'
 import Signup from './components/auth/signup'
 import Login from './components/auth/login'
 import AuthServices from './service/auth-services'
+import Map from './components/map'
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -44,6 +45,7 @@ class App extends Component {
             <ProtectedRoute path='/profile' user={this.state.loggedInUser} component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
+            <Route path="/map" component={Map} />
           </Switch>
         </div>
       )
@@ -56,6 +58,7 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
+            <Route path="/map" component={Map} />
             <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
             <Route path="/login" render={() => <Login setTheUser={this.setUser} />} />
           </Switch>
