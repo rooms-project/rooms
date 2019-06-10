@@ -1,0 +1,46 @@
+.coaster-list .card {
+  margin-bottom: 20px;
+}
+
+.coaster-list img {
+  object-fit: cover;
+  height: 200px;
+}
+
+.coaster-detail img {
+  width:  100%;
+}
+
+.coaster-list p {
+  font-size: 12px;
+}
+
+
+h1, h2, h3, h4, h5 {
+  font-weight: 200;
+}
+
+
+h1 {
+  margin-bottom: 50px
+}
+
+.container {
+  padding: 100px 0
+}
+
+.coaster-list p {
+  font-size: 10px
+}
+
+.coaster-list  {
+  margin-top: 80px
+}
+
+.coaster-detail img{
+  width: 100%;
+}
+
+.navigation a{
+  color: white
+}
