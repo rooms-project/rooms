@@ -1,0 +1,29 @@
+[
+  {
+    "id": 234242,
+    "roomname": "Pepito's room",
+    "description": "Esta es la habitacion de pepito",
+    "location": {
+      "latitude": 40.443351,
+      "longitude": -3.680213 
+    },
+    "imageUrl": "http://g-liu.com/blog/wp-content/uploads/2016/01/music-room-webcam.jpg",
+    "videoUrl": "http://g-liu.com/blog/wp-content/uploads/2016/01/music-room-webcam.jpg",
+    "owner": "Pepito",
+    "streams": 55,
+    "followers": [2734632, 2348792347, 2948727]
+  },
+  {
+    "id": 9374829,
+    "roomname": "Juanita's room",
+    "location": {
+      "latitude": 42.443351,
+      "longitude": -4.680213 
+    },
+    "imageUrl": "http://g-liu.com/blog/wp-content/uploads/2016/01/music-room-webcam.jpg",
+    "videoUrl": "http://g-liu.com/blog/wp-content/uploads/2016/01/music-room-webcam.jpg",
+    "owner": "Juanita",
+    "streams": 103,
+    "followers": [2234234734632, 234324238792347, 29483423727]
+  }
+]
