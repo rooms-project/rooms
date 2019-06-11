@@ -1,37 +1,39 @@
-import React, { Component } from 'react';
-import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import React, { Component } from 'react'
+import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
+import { Link } from 'react-router-dom'
+import CurrentLocation from './map'
+import Rooms from './../../../src/rooms.json'
 
-import CurrentLocation from './map';
 
 export class MapContainer extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-    rooms: [{lat: 40.443351, lng: -3.680213},
-      {latitude: 40.453351, longitude: -3.280345},
-      {latitude: 40.543351, longitude: -5.667345},
-      {latitude: 40.643351, longitude: -3.180345},
-      {latitude: 42.443351, longitude: -4.980345},
-      {latitude: 46.443351, longitude: -1.680345}]
+    selectedRoom: {},
+    Rooms,
   };
 
   displayMarkers = () => {
-    return this.state.rooms.map((room, index) => {
-      return <Marker key={index} id={index} position={{
-       lat: room.latitude,
-       lng: room.longitude
-     }}
-     onClick={() => alert("You clicked me!")} />
-    })
+    return this.state.Rooms.map((room, index) => {
+          // console.log(room)
+          return <Marker key={room.id} id={room.id} room={room} position={{
+           lat: room.location.latitude,
+           lng: room.location.longitude
+         }}
+         onClick={this.onMarkerClick} />
+        })
   }
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, e) => {
+    console.log(props)
     this.setState({
-      selectedPlace: props,
+      selectedRoom: props.room,
       activeMarker: marker,
       showingInfoWindow: true
     });
+    console.log("Selected room:", this.state.selectedRoom)
+  }
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
@@ -45,17 +47,20 @@ export class MapContainer extends Component {
   render() {
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
-        {/* <Marker onClick={this.onMarkerClick} name={'current location'} />
+        {this.displayMarkers()}
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
           onClose={this.onClose}
         >
-          <div>
-            <h4>{this.state.selectedPlace.name}</h4>
-          </div>
-        </InfoWindow> */}
-        {this.displayMarkers()}
+        <div>
+          <h4>{this.state.selectedRoom.roomname}</h4>
+          <img src={this.state.selectedRoom.imageUrl} alt={this.state.selectedRoom.roomname}/>
+          <p>{this.state.selectedRoom.description}</p>
+          <a href="/">Inicio</a>
+          {/* <Link to="/coasters">Montañas rusas</Link> */}
+        </div>
+        </InfoWindow>        
       </CurrentLocation>
     );
   }
