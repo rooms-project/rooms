@@ -1,34 +1,41 @@
 import React, { Component } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Header from './rooms-index-header'
+import LoginForm from './auth/rooms-login-form'
+import CoasterServices from '../service/coaster-services'
 
 
 import { Link } from 'react-router-dom'
-import Nav from "react-bootstrap/Nav";
+
 class Index extends Component {
   constructor(props){
     super(props)
     this.state = {
+      loggedInUser: null,
       modalShow: false,
-      modal:false
-
+      modal:false,
+      displayInfo:true
+    
     }
+    this.services = new CoasterServices()
     this.handleClick = this.handleClick.bind(this)
 
   }
+
   handleClick(){
    this.setState({ modalShow: true })
    console.log(this.state.modalShow)
   }
 
   render(){
+
     return(
 
       <div>
 
         <div className='rooms-index'>
           <Header/>
-          <div className='index-info'>
+          <div className= {this.state.displayInfo ? 'index-info': "blur"} >
               <h3>ROOMS</h3>
               <p>It’s a social media streaming 
                 platform that shares
@@ -36,11 +43,12 @@ class Index extends Component {
           </div>
         
           <div className="search-container">
-          <Link to="#"><FontAwesomeIcon className="search" icon="search" /></Link>
+          <Link to="/map"><FontAwesomeIcon className="search" icon="search" /></Link>
           </div>
 
           <div className="login">
-          <button className='button-login' onClick={this.handleClick}>LOG IN</button>
+          {this.props.userInSession ? null: <LoginForm setUser={this.props.setUser} displayInfo/>}
+          {/* <button className='button-login' onClick={this.handleClick}>LOG IN</button> */}
           </div>
   
         </div>
