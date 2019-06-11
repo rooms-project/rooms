@@ -61,6 +61,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 const coasterRoutes = require('./routes/coaster.routes')
 app.use('/api', coasterRoutes)
 
+const roomRoutes = require('./routes/rooms.routes')
+app.use('/api', roomRoutes)
+
 const authRoutes = require('./routes/auth.routes');
 app.use('/api', authRoutes);
 
