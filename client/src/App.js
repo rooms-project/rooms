@@ -12,6 +12,19 @@ import AuthServices from './service/auth-services'
 // import Map from './components/map'
 import Map from './components/map/map-container'
 
+
+/// Ben Components 
+/// Font Awesome
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faPersonBooth } from '@fortawesome/free-solid-svg-icons'
+
+
+import RoomIndex from './components/rooms-index'
+
+
+
 import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
@@ -40,9 +53,10 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <div>
-          <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} />
+          {/* <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} /> */}
+       
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={RoomIndex} />
             <ProtectedRoute path='/profile' user={this.state.loggedInUser} component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
@@ -53,9 +67,10 @@ class App extends Component {
     } else {
       return (
         <div>
-          <Navigation userInSession={this.state.loggedInUser} />
+         <Navigation userInSession={this.state.loggedInUser} /> 
+          
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={RoomIndex} />
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
@@ -70,3 +85,7 @@ class App extends Component {
 }
 
 export default App;
+
+
+library.add(faSearch, faPersonBooth);
+
