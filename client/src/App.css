@@ -1,46 +1,89 @@
-.coaster-list .card {
-  margin-bottom: 20px;
+/* INDEX */
+
+.rooms-index {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url('https://res.cloudinary.com/dsncbmlkl/image/upload/v1560239080/rooms-materials/jeshoots-com-606648-unsplash_1_mo0nwb.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+.rooms-index .header {
+display: flex;
+margin-left: 1em;
+}
+.rooms-index .header h3 {
+  margin-left: 0.3em;
+  font-family: helvetica;
+  color: white;
+  font-weight: bolder;
+  font-size: 2em;
+  margin-top: 13px;
+}
+.rooms-index .header .logo {
+  color: white;
+  font-weight: bolder;
+  font-size: 1.3em;
+  margin-top: 22px;
+}
+.rooms-index .search-container {
+  display:flex;
+  width: 100vw;
+  justify-content: center;
+  align-items : center;
+ 
+}
+.rooms-index .search {
+  display: block;
+  color: white;
+  font-size: 4.2em;
+}
+.rooms-index Link {
+  display:inline-block;
+  text-align: center;
+
 }
 
-.coaster-list img {
-  object-fit: cover;
-  height: 200px;
+.rooms-index .login {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  color: white;
+}
+.rooms-index .button-login {
+  color: inherit;
+  margin-bottom: 4.8em;
+  border-radius:13px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  width:19em;
+  font-size: 0.77em;
+  font-weight: bold;
+  padding: 6px;
+  border: 3px solid white;
+  background-color: transparent;
+  
+}
+.index-info {
+  font-family: helvetica;
+  margin-top:5.3em;
+  margin-left:1em;
+  color: white;
+}
+.index-info h3 {
+  font-weight: bolder;
+  font-size: 4em;
+}
+.index-info p {
+  font-weight: bolder;
+  font-size: 1.1em;
 }
 
-.coaster-detail img {
-  width:  100%;
-}
-
-.coaster-list p {
-  font-size: 12px;
-}
-
-
-h1, h2, h3, h4, h5 {
-  font-weight: 200;
-}
-
-
-h1 {
-  margin-bottom: 50px
-}
-
-.container {
-  padding: 100px 0
-}
-
-.coaster-list p {
-  font-size: 10px
-}
-
-.coaster-list  {
-  margin-top: 80px
-}
-
-.coaster-detail img{
-  width: 100%;
-}
-
-.navigation a{
-  color: white
+/* MODAL */
+.blur {
+  filter:opacity(0.5);
+  filter:blur(50px);
 }
