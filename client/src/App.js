@@ -14,8 +14,8 @@ import Map from './components/map/map-container'
 
 
 /// Ben Components 
-/// Font Awesome
 
+/// Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faPersonBooth } from '@fortawesome/free-solid-svg-icons'
@@ -53,10 +53,10 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <div>
-          {/* <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} /> */}
+          <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} />
        
           <Switch>
-            <Route path="/" exact component={RoomIndex} />
+            <Route path="/" exact render={()=> <RoomIndex userInSession={this.state.loggedInUser} setUser={this.setUser} />} />
             <ProtectedRoute path='/profile' user={this.state.loggedInUser} component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
@@ -70,13 +70,14 @@ class App extends Component {
          <Navigation userInSession={this.state.loggedInUser} /> 
           
           <Switch>
-            <Route path="/" exact component={RoomIndex} />
+          <Route path="/" exact render={()=> <RoomIndex userInSession={this.state.loggedInUser} setUser={this.setUser} />} />
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
             <Route path="/map" component={Map} />
             <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
-            <Route path="/login" render={() => <Login setTheUser={this.setUser} />} />
+            <Route path="/login" render={() => <RoomIndex setTheUser={this.setUser} />} /> 
+            {/* <Route path="/login" render={() => <Login setTheUser={this.setUser} />} /> */}
           </Switch>
         </div>
       )
