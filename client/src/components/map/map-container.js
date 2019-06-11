@@ -44,8 +44,14 @@ export class MapContainer extends Component {
     }
   };
 
+  chapuzaHandler = () => {
+    console.log("Holi")
+    window.history.pushState('page2', 'Title', '/patata');
+  }
+
   render() {
     return (
+      <React.Fragment>
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         {this.displayMarkers()}
         <InfoWindow
@@ -56,12 +62,11 @@ export class MapContainer extends Component {
         <div>
           <h4>{this.state.selectedRoom.roomname}</h4>
           <img src={this.state.selectedRoom.imageUrl} alt={this.state.selectedRoom.roomname}/>
-          <p>{this.state.selectedRoom.description}</p>
-          <a href="/">Inicio</a>
-          {/* <Link to="/coasters">Montañas rusas</Link> */}
+          <p>{this.state.selectedRoom.description}</p>          
         </div>
         </InfoWindow>        
       </CurrentLocation>
+      </React.Fragment>
     );
   }
 }
