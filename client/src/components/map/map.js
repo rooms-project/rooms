@@ -8,13 +8,17 @@ import '../map/map.css';
 
 
 export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedRoom: {},
-    displayViewButton: false,
-    Rooms,
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedRoom: {},
+      displayViewButton: false,
+      Rooms,
+    };
+  }
+  
 
   displayMarkers = () => {
     return this.state.Rooms.map((room, index) => {
@@ -28,6 +32,11 @@ export class MapContainer extends Component {
   displayViewButton = () => {
     if (this.state.displayViewButton === true) return <Link className="map-buttons" to="/create">View this room</Link>
   }
+  displayButton = () => {
+    if (!this.props.userInSession) return <Link className="map-buttons" to="/signup">Signup to create a room</Link>
+    else if (this.props.userInSession.room.length === 0) return <Link className="map-buttons" to="/create" user={this.props.userInSession}>Create room</Link>
+    else return <Link className="map-buttons" to="/create">Go to your room</Link>
+  }
 
   onMarkerClick = (props, marker, e) => {
     console.log(props)
@@ -38,6 +47,9 @@ export class MapContainer extends Component {
       displayViewButton: true
     });
     console.log("Selected room:", this.state.selectedRoom)
+  }
+  checkUser = () => {
+    console.log(this.props)
   }
 
   onClose = props => {
@@ -53,6 +65,7 @@ export class MapContainer extends Component {
   render() {
     return (
       <div>
+        {this.checkUser()}
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         {this.displayMarkers()}
         <InfoWindow
@@ -72,7 +85,7 @@ export class MapContainer extends Component {
       <div className="map-menu">  
         {this.displayViewButton()}      
         <Link className="map-buttons" to="/create">Random room</Link>
-        <Link className="map-buttons" to="/create">Create Room</Link>
+        {this.displayButton()}
       </div>
       </div>
 

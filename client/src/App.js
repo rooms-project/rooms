@@ -10,6 +10,7 @@ import Signup from './components/auth/signup'
 import Login from './components/auth/login'
 import AuthServices from './service/auth-services'
 import Map from './components/map/map'
+import CreateRoom from './components/rooms-create-form'
 
 
 /// Ben Components 
@@ -59,7 +60,11 @@ class App extends Component {
             <ProtectedRoute path='/profile' user={this.state.loggedInUser} component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
-            <Route path="/map" component={Map} />
+            <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />       
+            <Route path="/create" render={()=> <CreateRoom userInSession={this.state.loggedInUser} setUser={this.setUser} />} />       
+
+            
+            {/* <Route path="/map" component={Map} user={this.state.loggedInUser} setTheUser={this.setUser} /> */}
           </Switch>
         </div>
       )
@@ -73,7 +78,8 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
-            <Route path="/map" component={Map} />
+            <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />       
+            {/* <Route path="/map" component={Map} /> */}
             <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
             <Route path="/login" render={() => <RoomIndex setTheUser={this.setUser} />} /> 
             {/* <Route path="/login" render={() => <Login setTheUser={this.setUser} />} /> */}

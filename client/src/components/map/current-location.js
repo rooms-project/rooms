@@ -78,7 +78,6 @@ export class CurrentLocation extends React.Component {
       this.map = new maps.Map(node, mapConfig);
     }
   }
-  
   recenterMap() {
     const map = this.map;
     const current = this.state.currentLocation;
