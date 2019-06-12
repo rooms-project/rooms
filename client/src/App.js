@@ -9,8 +9,7 @@ import ProtectedRoute from './components/auth/protected-route'
 import Signup from './components/auth/signup'
 import Login from './components/auth/login'
 import AuthServices from './service/auth-services'
-// import Map from './components/map'
-import Map from './components/map/map-container'
+import Map from './components/map/map'
 
 
 /// Ben Components 

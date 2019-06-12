@@ -1,127 +1,85 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react'
+import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
+import { Link } from 'react-router-dom'
+import CurrentLocation from './current-location'
+import Rooms from './../../../src/rooms.json'
+import '../map/map.css';
 
-const mapStyles = {
-  map: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%'
-  }
-};
-export class CurrentLocation extends React.Component {
-  constructor(props) {
-    super(props);
 
-    const { lat, lng } = this.props.initialCenter;
-    this.state = {
-      currentLocation: {
-        lat: lat,
-        lng: lng
-      }
-    };
+
+export class MapContainer extends Component {
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedRoom: {},
+    displayViewButton: false,
+    Rooms,
+  };
+
+  displayMarkers = () => {
+    return this.state.Rooms.map((room, index) => {
+          return <Marker key={room.id} id={room.id} room={room} position={{
+           lat: room.location.latitude,
+           lng: room.location.longitude
+         }}
+         onClick={this.onMarkerClick} />
+        })
   }
-  componentDidMount() {
-    if (this.props.centerAroundCurrentLocation) {
-      if (navigator && navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(pos => {
-          const coords = pos.coords;
-          this.setState({
-            currentLocation: {
-              lat: coords.latitude,
-              lng: coords.longitude
-            }
-          });
-        });
-      }
-    }
-    this.loadMap();
+  displayViewButton = () => {
+    if (this.state.displayViewButton === true) return <Link className="map-buttons" to="/create">View this room</Link>
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.google !== this.props.google) {
-      this.loadMap();
-    }
-    if (prevState.currentLocation !== this.state.currentLocation) {
-      this.recenterMap();
-    }
-  }
-
-  loadMap() {
-    if (this.props && this.props.google) {
-      // checks if google is available
-      const { google } = this.props;
-      const maps = google.maps;
-
-      const mapRef = this.refs.map;
-
-      // reference to the actual DOM element
-      const node = ReactDOM.findDOMNode(mapRef);
-
-      let { zoom } = this.props;
-      const { lat, lng } = this.state.currentLocation;
-      const center = new maps.LatLng(lat, lng);
-      const mapConfig = Object.assign(
-        {},
-        {
-          center: center,
-          zoom: zoom
-        }
-      );
-      // maps.Map() is constructor that instantiates the map
-      this.map = new maps.Map(node, mapConfig);
-    }
-  }
-  
-  recenterMap() {
-    const map = this.map;
-    const current = this.state.currentLocation;
-
-    const google = this.props.google;
-    const maps = google.maps;
-
-    if (map) {
-      let center = new maps.LatLng(current.lat, current.lng);
-      map.panTo(center);
-    }
-  }
-
-  renderChildren() {
-    const { children } = this.props;
-
-    if (!children) return;
-
-    return React.Children.map(children, c => {
-      if (!c) return;
-      return React.cloneElement(c, {
-        map: this.map,
-        google: this.props.google,
-        mapCenter: this.state.currentLocation
-      });
+  onMarkerClick = (props, marker, e) => {
+    console.log(props)
+    this.setState({
+      selectedRoom: props.room,
+      activeMarker: marker,
+      showingInfoWindow: true,
+      displayViewButton: true
     });
+    console.log("Selected room:", this.state.selectedRoom)
   }
+
+  onClose = props => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+        displayViewButton: false
+      });
+    }
+  };
 
   render() {
-    const style = Object.assign({}, mapStyles.map);
-
     return (
       <div>
-        <div style={style} ref="map">
-          Loading map...
+      <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
+        {this.displayMarkers()}
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+        >
+        <div className="info-window">
+          <h1>{this.state.selectedRoom.roomname}</h1>
+          <img src={this.state.selectedRoom.imageUrl} alt={this.state.selectedRoom.roomname}/>
+          <p>{this.state.selectedRoom.description}</p>  
+          <a href={'/room/' + this.state.selectedRoom.id}>View {this.state.selectedRoom.roomname}</a>
+          <p>Followers {this.state.selectedRoom.followers}</p>      
         </div>
-        {this.renderChildren()}
+        </InfoWindow>     
+      </CurrentLocation>
+      <div className="map-menu">  
+        {this.displayViewButton()}      
+        <Link className="map-buttons" to="/create">Random room</Link>
+        <Link className="map-buttons" to="/create">Create Room</Link>
       </div>
+      </div>
+
     );
   }
 }
-export default CurrentLocation;
 
-CurrentLocation.defaultProps = {
-  zoom: 8,
-  initialCenter: {
-    lat: 43.915491,
-    lng: 6.972054
-  },
-
-  centerAroundCurrentLocation: false,
-  visible: true
-};
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyC9-z5odg8Pfi0AMseMq_6KocFN09_9FSw'
+})(MapContainer);

@@ -1,0 +1,29 @@
+.info-window {
+  background-color: black;
+}
+.map-menu {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+.map-buttons {
+    margin: 0 auto;
+    color: inherit;
+    margin-bottom: 1.5em;
+    border-radius:13px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    width:19em;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 10px;
+    border: 3px solid white;
+    background-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.map {
+  z-index:-999;
+}

@@ -3,10 +3,15 @@ const Schema = mongoose.Schema
 
 const roomSchema = new Schema({
     roomname: String,
-    location: String,
+    description: String,
+    location: {
+        latitude: Number,
+        longitude: Number,
+    },
     imageUrl: String,
     videoUrl: String,
-    owner: String,
+    owner: [{type: Schema.Types.ObjectId, ref:'User'}],
+    tags: Array,
     streams: Number,
     followers: Array,
 

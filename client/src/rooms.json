@@ -9,9 +9,10 @@
     },
     "imageUrl": "http://g-liu.com/blog/wp-content/uploads/2016/01/music-room-webcam.jpg",
     "videoUrl": "http://g-liu.com/blog/wp-content/uploads/2016/01/music-room-webcam.jpg",
-    "owner": "Pepito",
+    "owner": 32423423,
+    "tags": [],
     "streams": 55,
-    "followers": [2734632, 2348792347, 2948727]
+    "followers": 34509
   },
   {
     "id": 9374829,
@@ -22,8 +23,9 @@
     },
     "imageUrl": "http://g-liu.com/blog/wp-content/uploads/2016/01/music-room-webcam.jpg",
     "videoUrl": "http://g-liu.com/blog/wp-content/uploads/2016/01/music-room-webcam.jpg",
-    "owner": "Juanita",
+    "owner": 5435,
+    "tags": [],
     "streams": 103,
-    "followers": [2234234734632, 234324238792347, 29483423727]
+    "followers": 1132
   }
 ]
