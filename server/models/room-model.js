@@ -8,12 +8,13 @@ const roomSchema = new Schema({
         latitude: Number,
         longitude: Number,
     },
-    imageUrl: String,
+    imageUrl: String, 
     videoUrl: String,
     owner: [{type: Schema.Types.ObjectId, ref:'User'}],
-    tags: Array,
+    tags:Array,
     streams: Number,
-    followers: Array,
+    followers: [{type: Schema.Types.ObjectId, ref:'User'}],
+    likes: Number
 
 }, {
         timestamps: true
