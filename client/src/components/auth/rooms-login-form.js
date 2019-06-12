@@ -74,7 +74,7 @@ class LoginForm extends Component {
 
                                 <div>
                                     
-                                    <button type="submit" className="send-form-button">Login</button>
+                                    <button type="submit" className="send-form-button" onClick={()=>this.setState({})}>Login</button>
                                 </div>        
 
 
