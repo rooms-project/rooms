@@ -1,4 +1,13 @@
 .info-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  width: 130px;
+  height: 100px;
+}
+.info-window img {
+  height: 100px;
   background-color: black;
 }
 .map-menu {
@@ -20,13 +29,23 @@
     justify-content: center;
     text-decoration: none;
     width:19em;
-    font-size: 0.8em;
+    font-size: 0.77em;
     font-weight: bold;
-    padding: 10px;
+
     border: 3px solid white;
     background-color: transparent;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color: inherit;
+    border-radius:13px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    width:19em;
+    padding: 6px;
+
+
+    
 }
 
 .map {

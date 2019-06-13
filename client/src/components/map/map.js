@@ -34,7 +34,7 @@ export class MapContainer extends Component {
     if (this.state.displayViewButton === true) return <Link className="map-buttons" to="/create">View this room</Link>
   }
   displayButton = () => {
-    if (!this.props.userInSession) return <Link className="map-buttons" to="/signup">Signup to create a room</Link>
+    if (!this.props.userInSession) return <Link className="map-buttons" to="/signup">Create a room</Link>
     else if (this.props.userInSession.room.length === 0) return <Link className="map-buttons" to="/create" user={this.props.userInSession}>Create room</Link>
     else return <Link className="map-buttons" to="/create">Go to your room</Link>
   }
