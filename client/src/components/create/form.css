@@ -3,20 +3,22 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: rgba(1,193,196,1);
-  background: -moz-linear-gradient(top, rgba(1,193,196,1) 0%, rgba(44,102,117,1) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(1,193,196,1)), color-stop(100%, rgba(44,102,117,1)));
-  background: -webkit-linear-gradient(top, rgba(1,193,196,1) 0%, rgba(44,102,117,1) 100%);
-  background: -o-linear-gradient(top, rgba(1,193,196,1) 0%, rgba(44,102,117,1) 100%);
-  background: -ms-linear-gradient(top, rgba(1,193,196,1) 0%, rgba(44,102,117,1) 100%);
-  background: linear-gradient(to bottom, rgba(1,193,196,1) 0%, rgba(44,102,117,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#01c1c4', endColorstr='#2c6675', GradientType=0 );
+  background: rgba(44,102,117,1);
+  background: -moz-linear-gradient(top, rgba(44,102,117,1) 0%, rgba(28,44,77,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(44,102,117,1)), color-stop(100%, rgba(28,44,77,1)));
+  background: -webkit-linear-gradient(top, rgba(44,102,117,1) 0%, rgba(28,44,77,1) 100%);
+  background: -o-linear-gradient(top, rgba(44,102,117,1) 0%, rgba(28,44,77,1) 100%);
+  background: -ms-linear-gradient(top, rgba(44,102,117,1) 0%, rgba(28,44,77,1) 100%);
+  background: linear-gradient(to bottom, rgba(44,102,117,1) 0%, rgba(28,44,77,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c6675', endColorstr='#1c2c4d', GradientType=0 );
 }
 .create-form h1 {
+  font-family: Helvetica;
+  font-size: 1.2em;
+  font-weight: 800;
   color: white;
   margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
 }
 .create-form form {
   display: flex;
@@ -26,29 +28,31 @@
 }
 
 .create-form input {
-  width: 90%;
-  height: 60px;
-  margin: 15px 0;
-  font-size: 1.8em;
-  border-radius: 15px;
+  width: 100%;
+  height: 40px;
+  margin: 8px 0;
+  font-size: 1em;
+  border-radius: 10px;
 }
 
 .create-form form button {
+  height: 2;
   margin: 0 auto;
-  color: white;
+  color: inherit;
   margin-bottom: 1.2em;
   border-radius:13px;
   display: flex;
   justify-content: center;
   text-decoration: none;
-  width: 90%;
-  font-size: 1.2em;
+  width: 100%;
+  font-size: 0.8em;
   font-weight: bold;
   padding: 10px;
   border: 3px solid white;
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: white;
 }
 
 /* .btn {

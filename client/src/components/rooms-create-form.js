@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import RoomServices from '../service/room-services'
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Header from './rooms-header'
 
 // import { Link } from 'react-router-dom'
 import './create/form.css';
@@ -100,39 +101,43 @@ class CreateRoom extends Component {
     handleSubmit = e => {
         e.preventDefault()
         this.services.postRoom(this.state.room)
-            .then(x => {
-                window.location.href = "/map"
-            }) //O llevar al room
+            .then(room => {
+                console.log(room._id)
+                window.location.href = `/room/${room._id}`
+            })
     }
 
     render() {
         console.log("Create new room form page:")
         return (
-            <div className="create-form">            
-            <form onSubmit={this.handleSubmit}>
-                <h1>Create a room</h1>                            
-                <input onChange={this.handleChange} value={this.state.room.roomname} type="text" className="form-control" id="roomname" name="roomname" placeholder = "Name your room"/>
-                <input onChange={this.handleChange} value={this.state.room.description} type="text" className="form-control" id="description" name="description" placeholder = "Describe your room"/>
-                {/* Habrá que hacer un handlechange especial para los tags ¿? */}
-                <input onChange={this.handleChange} value={this.state.room.tags} type="text" className="form-control" id="tags" name="tags" placeholder = "Tags"/>
-                <FormControlLabel
-                control={
-                    <Switch
-                    checked={this.state.hidden}
-                    onChange={this.handleHiddenChange}
-                    value="hidden"
-                    color="primary"
+            <div>
+                <Header/> 
+                <div className="create-form">                       
+                <form onSubmit={this.handleSubmit}>
+                    <h1>Create a room</h1>                            
+                    <input onChange={this.handleChange} value={this.state.room.roomname} type="text" className="form-control" id="roomname" name="roomname" placeholder = "Name your room"/>
+                    <input onChange={this.handleChange} value={this.state.room.description} type="text" className="form-control" id="description" name="description" placeholder = "Describe your room"/>
+                    {/* Habrá que hacer un handlechange especial para los tags ¿? */}
+                    <input onChange={this.handleChange} value={this.state.room.tags} type="text" className="form-control" id="tags" name="tags" placeholder = "Tags"/>
+                    <FormControlLabel
+                    control={
+                        <Switch
+                        checked={this.state.hidden}
+                        onChange={this.handleHiddenChange}
+                        value="hidden"
+                        color="primary"
+                        />
+                    }
+                    label="Hidden"
                     />
-                }
-                label="Hidden"
-                />
-                <div className="location-radio">
-                <input onChange={this.handleChange} value={this.state.room.location} type="radio" className="form-control radio" id="location" name="location"/>
-                <label>Don't share my location</label>            
-                </div>        
-                <button type="submit">Create</button>
-            </form>
-        </div>
+                    <div className="location-radio">
+                    <input onChange={this.handleChange} value={this.state.room.location} type="radio" className="form-control radio" id="location" name="location"/>
+                    <label>Don't share my location</label>            
+                    </div>        
+                    <button type="submit">Create</button>
+                </form>
+                </div>
+            </div>
         )
     }
 }
