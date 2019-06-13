@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import CoastersList from './components/coasters-list'
 import CoasterDetails from './components/coaster-details'
+import Room from './components/room'
+
 import Navigation from './components/navigation'
 
 import Profile from './components/profile'
@@ -61,6 +63,7 @@ class App extends Component {
             <ProtectedRoute path='/profile' user={this.state.loggedInUser} component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
+            <Route path="/room/:id" component={Room} />
             <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />       
             <Route path="/create" render={()=> <CreateRoom userInSession={this.state.loggedInUser} setUser={this.setUser} />} />       
 
