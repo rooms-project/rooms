@@ -35,7 +35,7 @@ class Index extends Component {
 
         <div className='rooms-index'>
           <Header userInSession={this.state.loggedInUser} setUser={this.setUser}/>
-          <div className= {this.state.displayInfo ? 'index-info': "blur"} >
+          <div className='index-info' >
               <h3>ROOMS</h3>
               <p>It’s a social media streaming 
                 platform that shares
