@@ -3,39 +3,105 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import AuthServices from '../service/auth-services'
 
-class Header extends Component{
-  constructor(props){
-    super(props)
-    this.state = {
+// class Header extends Component{
+//   constructor(props){
+//     super(props)
+//     this.state = {
+//     }
+//     this.service = new AuthServices()
+//   }
+//   logout = () => {
+//     this.service.logout()
+//         .then(x => this.props.setUser(null))
+//   }
+//   render(){
+//     return(
+
+
+//       <div className="header-absolute">
+
+//         <div className="header">
+//             <div className="logo-type">
+//                 <Link to=''><FontAwesomeIcon className="logo" icon="person-booth" /></Link>
+//                 <Link to=''><h3>ROOMS</h3></Link>
+//             </div>
+//             <ul>
+//             <li><Link to=''>Your Profile</Link></li>
+//             <li> <Link to='' ><div onClick={this.logout}>Sign Out</div></Link></li>
+//             </ul>
+//         </div>
+      
+//       </div>
+      
+//     )
+//   }
+
+// }
+
+
+
+// export default Header
+
+class navigation extends Component {
+
+    constructor(props) {
+        super(props)
+        this.service = new AuthServices()
     }
-    this.service = new AuthServices()
-  }
-  logout = () => {
-    this.service.logout()
-        .then(x => this.props.setUser(null))
-  }
-  render(){
-    return(
 
 
-      <div className="header-absolute">
+    logout = () => {
+        this.service.logout()
+            .then(x => this.props.setTheUser(null))
+    }
 
-        <div className="header">
-            <div className="logo-type">
-                <Link to=''><FontAwesomeIcon className="logo" icon="person-booth" /></Link>
-                <Link to=''><h3>ROOMS</h3></Link>
+    render() {
+        if (this.props.userInSession) {
+
+            return (
+              <div className="header-absolute">
+
+                <div className="header">
+                    <div className="logo-type">
+                        <Link to='/map'><FontAwesomeIcon className="logo" icon="person-booth" /></Link>
+                        <Link to='/map'><h3>ROOMS</h3></Link>
+                    </div>
+                    <ul>
+                    <li><p>¡Hola {this.props.userInSession.username}!</p></li>
+                    <li><Link to="/coasters">Montañas rusas</Link></li>
+                    <li><Link to='/profile'>Your Profile</Link></li>
+                    <li> <Link to='' ><div onClick={this.logout}>Sign Out</div></Link></li>
+                    </ul>
+                </div>
+      
+              </div>
+            )
+
+        } else {
+            return (
+              <div className="header-absolute">
+
+                <div className="header">
+                    <div className="logo-type">
+                        <Link to='/map'><FontAwesomeIcon className="logo" icon="person-booth" /></Link>
+                        <Link to='/map'><h3>ROOMS</h3></Link>
+                    </div>
+                    <ul>
+                    <li><p>¡Hola invitado!</p></li>
+                    <li><Link to="/coasters">Montañas rusas</Link></li>
+                    <li><Link to='/profile'>Your Profile</Link></li>
+                    <li> <Link to="/login">Iniciar sesión</Link></li>
+                    </ul>
+                </div>
+    
             </div>
-            <ul>
-            <li><Link to=''>Your Profile</Link></li>
-            <li> <Link to='' ><div onClick={this.logout}>Sign Out</div></Link></li>
-            </ul>
-        </div>
-      
-      </div>
-      
-    )
-  }
 
+            )
+        }
+    }
 }
 
-export default Header
+
+
+
+export default navigation

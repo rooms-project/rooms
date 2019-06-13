@@ -131,7 +131,10 @@ margin-left: 1em;
 }
 
 /* MODAL */
+.login-link {
+  display: inline;
 
+}
 .blur {
   filter:opacity(0.5);
   filter:blur(50px);
@@ -146,6 +149,11 @@ margin-left: 1em;
   width:320px;
   font-family:helvetica;
   font-weight: bold;
+}
+.modalbody form {
+
+  width:378px;
+
 }
 .modal-header {
   margin-top:30vh;
@@ -171,4 +179,19 @@ margin-left: 1em;
   margin:10px 0px 0px 27px;
   color:rgb(176, 237, 255);
   
+}
+.button-login-modal {
+  color: inherit;
+  margin-bottom: 4.8em;
+  margin-left: 126px;
+  border-radius:13px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  width:10em;
+  font-size: 0.77em;
+  font-weight: bold;
+  padding: 6px;
+  border: 3px solid white;
+  background-color: transparent;
 }
