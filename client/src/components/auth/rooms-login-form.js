@@ -45,6 +45,7 @@ class LoginForm extends Component {
                 this.props.setUserIndex(response)
             })
             .catch(error => console.log(error.response.data.message))
+        
     }
 
 

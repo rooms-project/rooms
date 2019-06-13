@@ -48,6 +48,33 @@
     
 }
 
+.map-buttons-create {
+  height: 2;
+  margin: 0 auto;
+  color: inherit;
+  margin-bottom: 4em;
+  border-radius:13px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  width:19em;
+  font-size: 0.77em;
+  font-weight: bold;
+
+  border: 3px solid white;
+  background-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: inherit;
+  border-radius:13px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  width:19em;
+  padding: 6px;
+}
+
+
 .map {
   z-index:-999;
 }

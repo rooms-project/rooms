@@ -111,7 +111,7 @@ class CreateRoom extends Component {
         console.log("Create new room form page:")
         return (
             <div>
-                <Header/> 
+             
                 <div className="create-form">                       
                 <form onSubmit={this.handleSubmit}>
                     <h1>Create a room</h1>                            

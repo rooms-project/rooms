@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AuthServices from '../../service/auth-services'
+import { Link } from 'react-router-dom'
 
 class Login extends Component {
 
@@ -24,30 +25,33 @@ class Login extends Component {
                 this.props.setTheUser(response)
             })
             .catch(error => console.log(error.response.data.message))
+            window.location.href = `/map`
     }
 
     render() {
         return (
-            <div className="container">
+            <div className="login-form">
 
-                <div className="row">
+                <div >
 
-                    <div className="col-md-4">
-                        <h1>Iniciar sesión</h1>
-                    </div>
+                 
 
-                    <div className="col-md-8">
+                    <div >
+                        <h1>Log In</h1>
+                        <form onSubmit={this.handleSubmit} action="/map">
+                           
+                             
+                                <input onChange={this.handleChange} value={this.state.username} type="text" className="form-control" id="username" name="username" placeholder="User Name"/>
+                         
+                       
+                                <input onChange={this.handleChange} value={this.state.password} type="password" className="form-control" id="password" name="password" placeholder="Password"/>
+            
+                            <button type="submit" >Acceder</button>
 
-                        <form onSubmit={this.handleSubmit}>
-                            <div className="form-group">
-                                <label htmlFor="username">Usuario</label>
-                                <input onChange={this.handleChange} value={this.state.username} type="text" className="form-control" id="username" name="username" />
+                            <div className="login-link">
+                                 <p>Don't have an account yet ?</p>
+                                 <Link id="signup-link" to="/signup">Sign Up</Link>
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="password">Contraseña</label>
-                                <input onChange={this.handleChange} value={this.state.password} type="password" className="form-control" id="password" name="password" />
-                            </div>
-                            <button type="submit" className="btn btn-dark">¡Acceder</button>
                         </form>
                     </div>
 
