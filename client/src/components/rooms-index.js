@@ -1,10 +1,8 @@
 import React, { Component } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Header from './rooms-index-header'
+import Header from './rooms-header'
 import LoginForm from './auth/rooms-login-form'
 import CoasterServices from '../service/coaster-services'
-
-
 import { Link } from 'react-router-dom'
 
 class Index extends Component {
@@ -19,8 +17,10 @@ class Index extends Component {
     }
     this.services = new CoasterServices()
     this.handleClick = this.handleClick.bind(this)
-
+    this.setUser = this.setUser.bind(this)
+    
   }
+  setUser = userObj => this.setState({ loggedInUser: userObj })
 
   handleClick(){
    this.setState({ modalShow: true })
@@ -34,7 +34,7 @@ class Index extends Component {
       <div>
 
         <div className='rooms-index'>
-          <Header/>
+          <Header userInSession={this.state.loggedInUser} setUser={this.setUser}/>
           <div className= {this.state.displayInfo ? 'index-info': "blur"} >
               <h3>ROOMS</h3>
               <p>It’s a social media streaming 
@@ -47,7 +47,9 @@ class Index extends Component {
           </div>
 
           <div className="login">
-          {this.props.userInSession ? null: <LoginForm setUser={this.props.setUser} displayInfo/>}
+            {console.log('este es el loggedinuser de index ' + this.state.loggedInUser)}
+          {this.props.userInSession ? null: <LoginForm setUser={this.props.setUser} setUserIndex={()=>this.setState({ loggedInUser:" userObj" })} displayInfo/>}
+          {/* {this.props.userInSession ? null: <LoginForm setUser={this.props.setUser} displayInfo/>} */}
           {/* <button className='button-login' onClick={this.handleClick}>LOG IN</button> */}
           </div>
   

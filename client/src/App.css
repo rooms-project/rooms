@@ -1,3 +1,51 @@
+/* HEADER */
+
+.header-absolute {
+position: absolute;
+width: 100%
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+
+}
+
+.header ul {
+  display: flex;
+  
+  color: white;
+}
+
+.header ul li{
+  margin-top:1em;
+  text-decoration: none;
+  margin-right: 2em;
+  color: white;
+  list-style-type: none;
+}
+.header ul li a{
+  text-decoration: none;
+  color: white;
+}
+
+.logo-type {
+  margin-top:1em;
+  display: flex;
+
+}
+.logo-type a{
+  margin-left: 1em;
+  text-decoration: none;
+  color: white;
+}
+.logo {
+  margin-top:10px;
+}
+
+
+
 /* INDEX */
 
 .rooms-index {
@@ -83,9 +131,7 @@ margin-left: 1em;
 }
 
 /* MODAL */
-.modal-backdrop {
- 
-}
+
 .blur {
   filter:opacity(0.5);
   filter:blur(50px);
@@ -106,7 +152,7 @@ margin-left: 1em;
 }
 .location-radio {
   display:flex;
-  justify-content: start;
+  justify-content: flex-start;
   margin-top:40px;
 }
 .location-radio .radio {

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import CurrentLocation from './current-location'
 import Rooms from './../../../src/rooms.json'
 import '../map/map.css';
+import Header from '../rooms-header'
 
 
 
@@ -65,6 +66,7 @@ export class MapContainer extends Component {
   render() {
     return (
       <div>
+        <Header/>
         {this.checkUser()}
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         {this.displayMarkers()}

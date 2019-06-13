@@ -3,21 +3,22 @@ import './App.css';
 import CoastersList from './components/coasters-list'
 import CoasterDetails from './components/coaster-details'
 import Navigation from './components/navigation'
-import Home from './components/home'
+
 import Profile from './components/profile'
 import ProtectedRoute from './components/auth/protected-route'
 import Signup from './components/auth/signup'
-import Login from './components/auth/login'
+
 import AuthServices from './service/auth-services'
 import Map from './components/map/map'
 import CreateRoom from './components/rooms-create-form'
+
 
 
 /// Ben Components 
 
 /// Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { faSearch, faPersonBooth } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -47,7 +48,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log("este es el loggedInUser en app" + this.state.loggedInUser)
     this.fetchUser()
 
     if (this.state.loggedInUser) {
@@ -56,7 +57,7 @@ class App extends Component {
           <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} />
        
           <Switch>
-            <Route path="/" exact render={()=> <RoomIndex userInSession={this.state.loggedInUser} setUser={this.setUser} />} />
+            <Route path="/" exact render={()=><RoomIndex userInSession={this.state.loggedInUser} setUser={this.setUser} />} />
             <ProtectedRoute path='/profile' user={this.state.loggedInUser} component={Profile} />
             <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
             <Route path="/coasters/:id" component={CoasterDetails} />
