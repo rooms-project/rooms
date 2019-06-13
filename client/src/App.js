@@ -9,10 +9,11 @@ import Navigation from './components/rooms-header'
 import Profile from './components/profile'
 import ProtectedRoute from './components/auth/protected-route'
 import Signup from './components/auth/signup'
-
+import Login from './components/auth/login'
 import AuthServices from './service/auth-services'
 import Map from './components/map/map'
 import CreateRoom from './components/rooms-create-form'
+import Hamburguer from './components/hamburger/rooms-hamburger'
 
 
 
@@ -56,6 +57,7 @@ class App extends Component {
     if (this.state.loggedInUser) {
       return (
         <div>
+          <Hamburguer userInSession={this.state.loggedInUser} setTheUser={this.setUser} />
           <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} />
        
           <Switch>
@@ -75,7 +77,8 @@ class App extends Component {
     } else {
       return (
         <div>
-         <Navigation userInSession={this.state.loggedInUser} /> 
+         <Hamburguer userInSession={this.state.loggedInUser} setTheUser={this.setUser} />
+         <Navigation userInSession={this.state.loggedInUser} setTheUser={this.setUser} /> 
           
           <Switch>
           <Route path="/" exact render={()=> <RoomIndex userInSession={this.state.loggedInUser} setUser={this.setUser} />} />
@@ -86,7 +89,7 @@ class App extends Component {
             {/* <Route path="/map" component={Map} /> */}
             <Route path="/room/:id" component={Room} />
             <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
-            <Route path="/login" render={() => <RoomIndex setTheUser={this.setUser} />} /> 
+            <Route path="/login" render={() => <Login setTheUser={this.setUser} />} /> 
             {/* <Route path="/login" render={() => <Login setTheUser={this.setUser} />} /> */}
           </Switch>
         </div>
