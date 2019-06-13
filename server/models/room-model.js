@@ -10,8 +10,8 @@ const roomSchema = new Schema({
     },
     imageUrl: String, 
     videoUrl: String,
-    owner: [{type: Schema.Types.ObjectId, ref:'User'}],
-    tags:Array,
+    owner: String,
+    tags: Array,
     streams: Number,
     followers: [{type: Schema.Types.ObjectId, ref:'User'}],
     likes: Number
