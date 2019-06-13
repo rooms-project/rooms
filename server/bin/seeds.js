@@ -76,7 +76,7 @@ User.create(users)
            console.log(user)
            const roomUser = roomsCreated.filter(room => room.owner == user._id);
            const roomId = roomUser.map(room => room._id);
-           return user.update({room:roomId})
+           return user.updateOne({room:roomId})
          }))
         .then(msg => {
           console.log(msg)

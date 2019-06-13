@@ -5,8 +5,6 @@ import '../map/map.css';
 
 //const styles = require('./map-styles.json')
 
-
-
 const mapStyles = {
   map: {
     position: 'absolute',
@@ -335,10 +333,22 @@ export class CurrentLocation extends React.Component {
       this.map.setMapTypeId('styled_map');
     }
   }
+  
+  randomRoom() {
+    const map = this.map
+    const google = this.props.google;
+    const maps = google.maps
+    const lat = this.props.randomRoom.location.latitude
+    const lng = this.props.randomRoom.location.longitude
+    if (map) {
+      let center = new maps.LatLng(lat, lng);
+      map.panTo(center);
+    }
+  }
+
   recenterMap() {
     const map = this.map;
     const current = this.state.currentLocation;
-
     const google = this.props.google;
     const maps = google.maps;
 
@@ -365,6 +375,10 @@ export class CurrentLocation extends React.Component {
 
   render() {
     const style = Object.assign({}, mapStyles.map);
+
+    if(this.props.randomRoom){
+      this.randomRoom()
+    }
 
     return (
       <div>

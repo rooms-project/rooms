@@ -84,6 +84,7 @@ class App extends Component {
             <Route path="/coasters/:id" component={CoasterDetails} />
             <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />       
             {/* <Route path="/map" component={Map} /> */}
+            <Route path="/room/:id" component={Room} />
             <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
             <Route path="/login" render={() => <RoomIndex setTheUser={this.setUser} />} /> 
             {/* <Route path="/login" render={() => <Login setTheUser={this.setUser} />} /> */}
