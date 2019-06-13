@@ -3,8 +3,8 @@ import './App.css';
 import CoastersList from './components/coasters-list'
 import CoasterDetails from './components/coaster-details'
 import Room from './components/room'
-
-import Navigation from './components/navigation'
+// import Navigation from './components/navigation'
+import Navigation from './components/rooms-header'
 
 import Profile from './components/profile'
 import ProtectedRoute from './components/auth/protected-route'

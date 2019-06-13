@@ -70,12 +70,14 @@ class LoginForm extends Component {
                                 <input onChange={this.handleChange} value={this.state.username} type="text" className="form-control" id="username" name="username" placeholder = "Name"/>
                    
                                 <input onChange={this.handleChange} value={this.state.password} type="password" className="form-control" id="password" name="password" placeholder = "Password"/>
-                                <p>Don't have an account yet ?</p>
-                                <Link id="signup-link" to="/signup">Sign Up</Link>
+                                <div className="login-link">
+                                    <p>Don't have an account yet ?</p>
+                                    <Link id="signup-link" to="/signup">Sign Up</Link>
+                                </div>
 
                                 <div>
                                     
-                                    <button type="submit" className="send-form-button" onClick={()=>this.setState({})}>Login</button>
+                                    <button type="submit" className="button-login-modal" onClick={()=>this.setState({})}>Login</button>
                                 </div>        
 
 

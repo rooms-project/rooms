@@ -66,7 +66,7 @@ export class MapContainer extends Component {
   render() {
     return (
       <div>
-        <Header/>
+        {/* <Header/> */}
         {this.checkUser()}
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         {this.displayMarkers()}
