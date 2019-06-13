@@ -42,6 +42,7 @@ class LoginForm extends Component {
             .then(response => {
                 this.setState({ username: '', password: '', redirect: true })
                 this.props.setUser(response)
+                this.props.setUserIndex(response)
             })
             .catch(error => console.log(error.response.data.message))
     }
