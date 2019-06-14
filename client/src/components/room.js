@@ -17,6 +17,7 @@ class Room extends Component {
     render() {
         return (
             <div className="room">
+                <div>
                 <video controls="controls" 
                     className="video-stream" 
                     x-webkit-airplay="allow" 
@@ -25,11 +26,17 @@ class Room extends Component {
                 >
                 Your browser does not support the video tag.
                 </video>
-                <Box room={this.state.room}>
+                <div className="box"> 
                     <h1 className="roomname">{this.state.room.roomname}</h1>
-                    <p>Description: {this.state.room.description}</p>
-                    <p>Tags: {this.state.room.tags}</p>
-                </Box>
+                    <p>{this.state.room.description}</p>
+                    <p>{this.state.room.tags}</p>
+                </div>
+                </div>
+                <div className="chat">
+                    <h1>CHAT</h1>
+                    <p>PEPE ============  Lasdfokmads[fmsa[dmfa[sdmfasdmf</p>
+                    <p>ijfadoifjaodifjaoidjfoasidjfoaisdjf =========PEPE2</p>
+                </div>
             </div>
         )
     }
