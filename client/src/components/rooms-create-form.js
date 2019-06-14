@@ -66,12 +66,11 @@ class CreateRoom extends Component {
         }, () => console.log("getOwnerId -> El estado es:", this.state.room) )
            
     }
-
+    
     currentLocation() {
         if (navigator && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(pos => {
             var coords = pos.coords;
-            console.log("currentLocation -> Location de usuario es:", coords)
             this.setState(
                 {
                 ...this.state,
@@ -83,10 +82,8 @@ class CreateRoom extends Component {
                         longitude: coords.longitude
                     }
                 }
-                })
-            
-            }, () => console.log("currentLocation -> El state es:", this.state.room.location)
-            );
+                })            
+            });
         }
     }
 
@@ -101,17 +98,15 @@ class CreateRoom extends Component {
     handleSubmit = e => {
         e.preventDefault()
         this.services.postRoom(this.state.room)
-            .then(room => {
-                console.log(room._id)
-                window.location.href = `/room/${room._id}`
+            .then(room => { 
+                console.log(room)
+                window.location.href = `/room/${room._id}` 
             })
     }
 
     render() {
-        console.log("Create new room form page:")
         return (
-            <div>
-             
+            <div>             
                 <div className="create-form">                       
                 <form onSubmit={this.handleSubmit}>
                     <h1>Create a room</h1>                            

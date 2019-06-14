@@ -7,8 +7,6 @@ import RoomService from '../../service/room-services'
 import '../map/map.css';
 import Header from '../rooms-header'
 
-
-
 export class MapContainer extends Component {
   constructor(props) {
     super(props)
@@ -22,18 +20,16 @@ export class MapContainer extends Component {
     this.services = new RoomService()
   }
 
-
-
   componentDidMount() {
     this.services.getAllRooms()
         .then(allRooms => this.setState({ Rooms: allRooms }))
         .catch((err) => console.log(err))
   }
+
+  getUserRoom() { return this.props.userInSession.room[0] }
   
   displayMarkers = () => {
-    console.log(this.state.Rooms)
     return this.state.Rooms.map((room, index) => {
-          console.log(room)
           if (!room.location) {
             return null
           }
@@ -46,34 +42,32 @@ export class MapContainer extends Component {
   }
   
   displayViewButton = () => {
-    console.log(this.state.selectedRoom._id)
     if (this.state.displayViewButton === true) return <Link className="map-buttons" to={`/room/${this.state.selectedRoom._id}`}>View this room</Link>
   }
+
   displayButton = () => {
-    if (!this.props.userInSession) return <Link className="map-buttons-create" to="/signup">Create room</Link>
-    else if (this.props.userInSession.room.length === 0) return <Link className="map-buttons-create" to="/create" user={this.props.userInSession}>Create room</Link>
-    else return <Link className="map-buttons" to="/create">Your room</Link>
+    if (!this.props.userInSession) return <Link className="map-buttons" to="/login">Create a room</Link>
+    else if (this.props.userInSession.room.length === 0) return <Link className="map-buttons" to="/create" user={this.props.userInSession}>Create room</Link>
+    else return <Link className="map-buttons" to={`/room/${this.getUserRoom()}`}>Go to your room</Link>
   }
-  pickRandom = () => {
-    console.log(this.state.Rooms.length)
+
+  pickRandom = (marker) => {
     const random = Math.floor(Math.random() * (this.state.Rooms.length - 0)) + 0
     const randomRoom = this.state.Rooms[random]
-    console.log("****************", this.state.Rooms[random])
     this.setState({
       selectedRoom: randomRoom,
-    }, () => console.log("************* selectedRoom", this.state.selectedRoom))
+    })
   }
 
   onMarkerClick = (props, marker, e) => {
-    console.log(props)
     this.setState({
       selectedRoom: props.room,
       activeMarker: marker,
       showingInfoWindow: true,
       displayViewButton: true
     });
-    console.log("Selected room:", this.state.selectedRoom)
   }
+
   checkUser = () => {
     console.log(this.props)
   }
@@ -92,9 +86,9 @@ export class MapContainer extends Component {
     return (
       <div>
         {/* <Header/> */}
-        {this.checkUser()}
       <CurrentLocation randomRoom={this.state.selectedRoom} centerAroundCurrentLocation google={this.props.google}>
         {this.displayMarkers()}
+
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
@@ -107,12 +101,12 @@ export class MapContainer extends Component {
           <a href={'/room/' + this.state.selectedRoom.id}>View {this.state.selectedRoom.roomname}</a>
           <p>Followers {this.state.selectedRoom.followers}</p>      
         </div>
-        </InfoWindow>     
+        </InfoWindow>
+
       </CurrentLocation>
       <div className="map-menu">  
-        {this.displayViewButton()}      
-        <Link className="map-buttons" onClick={this.pickRandom}>Random room</Link>
-        {/* to={`room/${this.state.selectedRoom}`} */}
+        {this.displayViewButton()} 
+        <button type="submit" className="map-buttons" onClick={this.pickRandom}>Random room</button>
         {this.displayButton()}
       </div>
       </div>

@@ -338,6 +338,7 @@ export class CurrentLocation extends React.Component {
     const map = this.map
     const google = this.props.google;
     const maps = google.maps
+    if (!this.props.randomRoom.location) return null
     const lat = this.props.randomRoom.location.latitude
     const lng = this.props.randomRoom.location.longitude
     if (map) {
