@@ -1,5 +1,5 @@
 .room {
-  height: 100vh;
+  height: 200vh;
   background: rgba(44,102,117,1);
   background: -moz-linear-gradient(top, rgba(44,102,117,1) 0%, rgba(28,44,77,1) 100%);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(44,102,117,1)), color-stop(100%, rgba(28,44,77,1)));

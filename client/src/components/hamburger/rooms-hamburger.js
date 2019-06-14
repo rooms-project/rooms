@@ -22,7 +22,12 @@ class Hamburguer extends Component {
 
             return (
                 <div className="pepe">
+                    <div className="logo-type-hamb">
+                        <Link to='/map'><FontAwesomeIcon className="logo" icon="person-booth" /></Link>
+                        <Link to='/map'><h3>ROOMS</h3></Link>
+                    </div>
                       <nav role='navigation'>
+                      
                         <div id="menuToggle">
                           {/* <!--
                           A fake / hidden checkbox is used as click reciever,
@@ -57,6 +62,10 @@ class Hamburguer extends Component {
         } else {
             return (
               <div className="pepe">
+                   <div className="logo-type-hamb">
+                        <Link to='/map'><FontAwesomeIcon className="logo" icon="person-booth" /></Link>
+                        <Link to='/map'><h3>ROOMS</h3></Link>
+                    </div>
                   <nav role='navigation'>
                     <div id="menuToggle">
                       {/* <!--
