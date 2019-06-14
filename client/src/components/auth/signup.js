@@ -24,35 +24,24 @@ class Signup extends Component {
                 this.props.setTheUser(response)
             })
             .catch(error => console.log(error.response.data.message))
+            window.location.href = `/map`
     }
 
     render() {
         return (
-            <div className="container">
-
-                <div className="row">
-
-                    <div className="col-md-4">
-                        <h1>Registrarse</h1>
-                    </div>
-
-                    <div className="col-md-8">
-
+            <div className="login-form">
+                    <div>
+                        <h1>Sign Up</h1>
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="username">Usuario</label>
-                                <input onChange={this.handleChange} value={this.state.username} type="text" className="form-control" id="username" name="username" />
+                                <input onChange={this.handleChange} value={this.state.username} type="text" className="form-control" id="username" name="username" placeholder="User Name"/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="password">Contraseña</label>
-                                <input onChange={this.handleChange} value={this.state.password} type="password" className="form-control" id="password" name="password" />
+                                <input onChange={this.handleChange} value={this.state.password} type="password" className="form-control" id="password" name="password" placeholder="Password" />
                             </div>
-                            <button type="submit" className="btn btn-dark">Enviar</button>
+                            <button type="submit" className="signup-link">Sign Up</button>
                         </form>
                     </div>
-
-                </div>
-
             </div>
         )
     }
@@ -60,3 +49,4 @@ class Signup extends Component {
 }
 
 export default Signup
+

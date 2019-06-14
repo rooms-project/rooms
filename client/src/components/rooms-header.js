@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import AuthServices from '../service/auth-services'
+import SearchBar from './searchBar/searchBar'
 
 
 class navigation extends Component {
@@ -29,7 +30,8 @@ class navigation extends Component {
                         <Link to='/map'><h3>ROOMS</h3></Link>
                     </div>
                     <ul>
-                    <li><p>¡Hola {this.props.userInSession.username}!</p></li>             
+                    <li><p>Hi {this.props.userInSession.username}!</p></li>             
+                    <li><SearchBar/></li>             
                     <li><Link to='/profile'>Your Profile</Link></li>
                     <li> <Link to='' ><div onClick={this.logout}>Sign Out</div></Link></li>
                     </ul>
@@ -48,7 +50,6 @@ class navigation extends Component {
                         <Link to='/map'><h3>ROOMS</h3></Link>
                     </div>
                     <ul>
-                    <li><p>¡Hola invitado!</p></li>
                     <li><Link to='/profile'>Your Profile</Link></li>
                     <li> <Link to="/login">Log In</Link></li>
                     </ul>
