@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RoomServices from '../service/room-services'
+// import Chips from '../components/tags/tags'
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Header from './rooms-header'
@@ -114,7 +115,9 @@ class CreateRoom extends Component {
                     <input onChange={this.handleChange} value={this.state.room.description} type="text" className="form-control" id="description" name="description" placeholder = "Describe your room"/>
                     {/* Habrá que hacer un handlechange especial para los tags ¿? */}
                     <input onChange={this.handleChange} value={this.state.room.tags} type="text" className="form-control" id="tags" name="tags" placeholder = "Tags"/>
-                    <FormControlLabel
+                    {/* <Chips chips={['react', 'javascript', 'scss']} placeholder="Add a tag..." max="10" />, */}
+
+                    {/* <FormControlLabel
                     control={
                         <Switch
                         checked={this.state.hidden}
@@ -128,7 +131,7 @@ class CreateRoom extends Component {
                     <div className="location-radio">
                     <input onChange={this.handleChange} value={this.state.room.location} type="radio" className="form-control radio" id="location" name="location"/>
                     <label>Don't share my location</label>            
-                    </div>        
+                    </div>         */}
                     <button type="submit">Create</button>
                 </form>
                 </div>
