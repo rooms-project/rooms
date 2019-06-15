@@ -50,7 +50,7 @@ class navigation extends Component {
                         <Link to='/map'><h3>ROOMS</h3></Link>
                     </div>
                     <ul>
-                    <li><SearchBar/></li>       
+                    {/* <li><SearchBar search=""/></li>        */}
                     <li><Link to='/profile'>Your Profile</Link></li>
                     <li> <Link to="/login">Log In</Link></li>
                     </ul>

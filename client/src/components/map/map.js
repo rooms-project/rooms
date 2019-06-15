@@ -3,9 +3,9 @@ import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
 import { Link } from 'react-router-dom'
 import CurrentLocation from './current-location'
 import RoomService from '../../service/room-services'
-// import Rooms from './../../../src/rooms.json'
 import '../map/map.css';
 import Header from '../rooms-header'
+import MapSearchBar from '../searchBar/map-searchBar';
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -15,7 +15,8 @@ export class MapContainer extends Component {
       activeMarker: {},
       selectedRoom: "",
       displayViewButton: false,
-      Rooms: []
+      Rooms: [],
+      filteredRooms: []
     }
     this.services = new RoomService()
   }
@@ -23,13 +24,14 @@ export class MapContainer extends Component {
   componentDidMount() {
     this.services.getAllRooms()
         .then(allRooms => this.setState({ Rooms: allRooms }))
+        .then(() => this.setState({filteredRooms: this.state.Rooms}))
         .catch((err) => console.log(err))
   }
 
   getUserRoom() { return this.props.userInSession.room[0] }
   
   displayMarkers = () => {
-    return this.state.Rooms.map((room, index) => {
+    return this.state.filteredRooms.map((room, index) => {
           if (!room.location) {
             return null
           }
@@ -38,7 +40,7 @@ export class MapContainer extends Component {
             lng: room.location.longitude
           }}
          onClick={this.onMarkerClick} />
-        })
+    })
   }
   
   displayViewButton = () => {
@@ -71,6 +73,17 @@ export class MapContainer extends Component {
   checkUser = () => {
     console.log(this.props)
   }
+  checkRooms = () => {
+    return this.state.Rooms
+  }
+
+  search = (search) => {
+    console.log('State en searchbar', this.state);
+		let filteredRooms = [ ...this.state.Rooms ];
+		filteredRooms = filteredRooms.filter((room) => room.roomname.toLowerCase().includes(search.toLowerCase()))
+    this.setState({ filteredRooms });    
+    console.log(filteredRooms)
+  }
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
@@ -85,21 +98,25 @@ export class MapContainer extends Component {
   render() {
     return (
       <div>
-        {/* <Header/> */}
+      <MapSearchBar search={this.search}/>
       <CurrentLocation randomRoom={this.state.selectedRoom} centerAroundCurrentLocation google={this.props.google}>
         {this.displayMarkers()}
-
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
           onClose={this.onClose}
+          className="info-window-main"
         >
         <div className="info-window">
-          <h1>{this.state.selectedRoom.roomname}</h1>
+          <div className="info-window-img">
           <img src={this.state.selectedRoom.imageUrl} alt={this.state.selectedRoom.roomname}/>
+          </div>
+          <div className="info-window-content">
+          <p>{this.state.selectedRoom.roomname}</p>
           <p>{this.state.selectedRoom.description}</p>  
           <a href={'/room/' + this.state.selectedRoom.id}>View {this.state.selectedRoom.roomname}</a>
-          <p>Followers {this.state.selectedRoom.followers}</p>      
+          <p>Followers {this.state.selectedRoom.followers}</p>  
+          </div>    
         </div>
         </InfoWindow>
 

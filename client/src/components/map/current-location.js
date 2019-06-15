@@ -394,18 +394,11 @@ export class CurrentLocation extends React.Component {
 export default CurrentLocation;
 
 CurrentLocation.defaultProps = {
-  zoom: 8,
+  zoom: 4,
   initialCenter: {
     lat: 43.915491,
     lng: 6.972054
   },
   centerAroundCurrentLocation: false,
   visible: true,
-  
-  // disableDefaultUI: true, // disable default map UI
-  // draggable: true, // make map draggable
-  // keyboardShortcuts: false, // disable keyboard shortcuts
-  // scaleControl: true, // allow scale controle
-  // scrollwheel: true, // allow scroll wheel
-  // styles: styles // change default map styles
 };
