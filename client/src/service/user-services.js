@@ -5,11 +5,10 @@ export default class services {
     constructor() {
 
         this.service = axios.create({
-            baseURL: 'http://localhost:3000/api/user/'
+            baseURL: 'http://localhost:3000/api/users/'
         })
     }
     getAllUsers = () => {
-
         return this.service.get('getAllUsers', { withCredentials: true })
             .then(res => res.data)
             .catch(err => console.log('Error', err))

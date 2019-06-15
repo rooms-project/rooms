@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import CoastersList from './components/coasters-list'
-import CoasterDetails from './components/coaster-details'
 import Room from './components/room'
 // import Navigation from './components/navigation'
 import Navigation from './components/rooms-header'
@@ -21,7 +19,7 @@ import Hamburguer from './components/hamburger/rooms-hamburger'
 
 /// Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSearch, faPersonBooth, faHeart, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faPersonBooth, faHeart, faUser, faEye } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -63,8 +61,8 @@ class App extends Component {
           <Switch>
             <Route path="/" exact render={()=><RoomIndex userInSession={this.state.loggedInUser} setUser={this.setUser} />} />
             <ProtectedRoute path='/profile' user={this.state.loggedInUser} component={Profile} />
-            <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
-            <Route path="/coasters/:id" component={CoasterDetails} />
+            {/* <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
+            <Route path="/coasters/:id" component={CoasterDetails} /> */}
             <Route path="/room/:id" component={Room} />
             <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />       
             <Route path="/create" render={()=> <CreateRoom userInSession={this.state.loggedInUser} setUser={this.setUser} />} />       
@@ -83,8 +81,8 @@ class App extends Component {
           <Switch>
           <Route path="/" exact render={()=> <RoomIndex userInSession={this.state.loggedInUser} setUser={this.setUser} />} />
             <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
-            <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
-            <Route path="/coasters/:id" component={CoasterDetails} />
+            {/* <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
+            <Route path="/coasters/:id" component={CoasterDetails} /> */}
             <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />       
             {/* <Route path="/map" component={Map} /> */}
             <Route path="/room/:id" component={Room} />
@@ -101,5 +99,5 @@ class App extends Component {
 export default App;
 
 
-library.add(faSearch, faPersonBooth, faHeart, faUser);
+library.add(faSearch, faPersonBooth, faHeart, faUser, faEye);
 

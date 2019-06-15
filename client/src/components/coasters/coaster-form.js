@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CoasterServices from '../service/coaster-services'
+import CoasterServices from '../../service/coaster-services'
 import Modal from 'react-bootstrap/Modal'
 
 

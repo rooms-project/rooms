@@ -3,7 +3,8 @@
   top: 10px;
   z-index: 999;
   left: 25%;
-  width: 95%;
+	width: 95%;
+	background: transparent;
 }
 .search-input {
   border: 1px solid transparent;

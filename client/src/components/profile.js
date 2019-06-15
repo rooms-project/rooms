@@ -46,7 +46,7 @@ class Profile extends Component {
                        
                                 <input onChange={this.handleChange} value={this.state.password} type="password" className="form-control" id="password" name="password" placeholder="Password"/>
             
-                            <button type="submit" >Acceder</button>
+                            <button type="submit" >Login</button>
 
                             <div className="login-link">
                                  <p>Don't have an account yet ?</p>
