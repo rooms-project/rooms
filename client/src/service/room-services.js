@@ -5,7 +5,7 @@ export default class services {
     constructor() {
 
         this.service = axios.create({
-            baseURL: 'http://localhost:3000/api/'
+            baseURL: 'http://localhost:3000/api/rooms/'
         })
     }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import CoasterService from '../service/coaster-services'
+import CoasterService from '../../service/coaster-services'
 
 import { Link } from 'react-router-dom'
 

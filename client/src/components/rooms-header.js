@@ -31,7 +31,7 @@ class navigation extends Component {
                     </div>
                     <ul>
                     <li><p>Hi {this.props.userInSession.username}!</p></li>             
-                    <li><SearchBar/></li>             
+                    {/* <li><SearchBar/></li>              */}
                     <li><Link to='/profile'>Your Profile</Link></li>
                     <li> <Link to='' ><div onClick={this.logout}>Sign Out</div></Link></li>
                     </ul>

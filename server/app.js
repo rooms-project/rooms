@@ -34,7 +34,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.set('view engine', 'hbs');
 
 // configuracion middleware CORS
 const whitelist = ['http://localhost:5000']
@@ -58,11 +58,20 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-const coasterRoutes = require('./routes/coaster.routes')
-app.use('/api', coasterRoutes)
+//const coasterRoutes = require('./routes/coaster.routes')
+//app.use('/api', coasterRoutes)
+
+const apiRoutes = require('./routes/api.routes')
+app.use('/api', apiRoutes)
 
 const roomRoutes = require('./routes/rooms.routes')
-app.use('/api', roomRoutes)
+app.use('/api/rooms', roomRoutes)
+
+const userRoutes = require('./routes/user.routes')
+app.use('/api/users', userRoutes)
+
+// const roomRoutes = require('./routes/rooms.routes')
+// app.use('/api', roomRoutes)
 
 const authRoutes = require('./routes/auth.routes');
 app.use('/api', authRoutes);
