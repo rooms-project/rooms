@@ -31,7 +31,31 @@ export class MapContainer extends Component {
   getUserRoom() { return this.props.userInSession.room[0] }
   
   displayMarkers = () => {
-    return this.state.filteredRooms.map((room, index) => {
+    const {google} = this.props;
+    const svg = `
+    data:image/svg+xml;utf-8, \
+    <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <title>Layer 1</title>
+      <circle fill="#ffff00" stroke-width="5" stroke="black" r="40" cy="50" cx="50"/>
+    </g>
+    <defs>
+      <filter id="_blur">
+      <feGaussianBlur stdDeviation="0.1" in="SourceGraphic"/>
+    </filter>
+    </defs>
+    </svg>`
+    const icon = {
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: 7,
+      fillColor: 'tomato',
+      strokeColor: 'tomato',
+      fill: 'tomato',
+      fillOpacity: 0.8,
+      strokeWeight: 2,
+    }
+
+    return this.state.filteredRooms.map((room) => {
           if (!room.location) {
             return null
           }
@@ -39,7 +63,8 @@ export class MapContainer extends Component {
             lat: room.location.latitude,
             lng: room.location.longitude
           }}
-         onClick={this.onMarkerClick} />
+          icon = {icon}
+          onClick={this.onMarkerClick} />
     })
   }
   

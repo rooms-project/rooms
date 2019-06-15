@@ -1,5 +1,6 @@
 .info-window-main {
-  overflow: hidden!important;
+  /* overflow: hidden!important; */
+  padding: 10px;
 }
 .info-window {
   /* display: flex;
@@ -14,14 +15,16 @@
 .info-window-content {
   color: white;
   display: inline-block;
+  vertical-align: middle;
+  padding: 5px;
 }
 
 .info-window-img img {
   width: 150px;
-  background-color: black;
 }
 .gm-style .gm-style-iw-c {
   background-color: #212529;
+  padding: 10px!important;
 
 }
 .gm-style .gm-style-iw-d{
