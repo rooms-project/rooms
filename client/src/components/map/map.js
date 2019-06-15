@@ -97,7 +97,7 @@ export class MapContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="map-container">
       <MapSearchBar search={this.search}/>
       <CurrentLocation randomRoom={this.state.selectedRoom} centerAroundCurrentLocation google={this.props.google}>
         {this.displayMarkers()}

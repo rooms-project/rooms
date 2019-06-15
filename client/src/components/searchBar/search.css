@@ -1,20 +1,23 @@
 .search-bar {
+	display: flex;
   position: absolute;
-  top: 10px;
+  top: 45%;
   z-index: 999;
-  left: 25%;
-	width: 95%;
+  left: 3.5%;
+
 	background: transparent;
 }
 .search-input {
   border: 1px solid transparent;
   border-bottom: 1px solid white;
   background-color: transparent;
-  width: 50%;
   color: white;
   font-size: 1.5em;
-  outline: none
+	outline: none;
+	width:100px;
+	font-weight: bold;
 }
+
 
 .search-input:focus {
   background-color: transparent;
@@ -26,6 +29,7 @@
 .search-bar button[type="submit"] {
 	background-color: rgba(0, 0, 0, 0);
 	border: medium none;
+	border-bottom: 1px solid white;
 	color: #fff;
 	cursor: pointer;
 	height: 50px;

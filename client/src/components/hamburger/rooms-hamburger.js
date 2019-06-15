@@ -9,12 +9,17 @@ class Hamburguer extends Component {
     constructor(props) {
         super(props)
         this.service = new AuthServices()
+        this.closeButton = document.getElementsByClassName("close-hamb")[0]
     }
 
 
     logout = () => {
         this.service.logout()
-            .then(x => this.props.setTheUser(null))
+            .then((x) => {
+              console.log('esto ' + this.closeButton)
+              this.props.setTheUser(null)
+
+            })
     }
 
     render() {
@@ -29,11 +34,13 @@ class Hamburguer extends Component {
                       <nav role='navigation'>
                       
                         <div id="menuToggle">
+
                           {/* <!--
                           A fake / hidden checkbox is used as click reciever,
                           so you can use the :checked selector on it.
                           --> */}
-                          <input type="checkbox" />
+
+                          <input className="close-hamb" type="checkbox" />
                           
                           {/* <!--
                           Some spans to act as a hamburger.

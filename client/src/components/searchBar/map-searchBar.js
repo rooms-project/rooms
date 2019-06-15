@@ -26,7 +26,7 @@ export default class MapSearchBar extends Component {
   render() {
     return (    
       <div className="search-bar"> 
-        <input className="search-input" type="text" name="search" value={this.state.search} onChange={this.handleChange} placeholder="Search Room"/>
+        <input className="search-input" type="text" name="search" value={this.state.search} onChange={this.handleChange} placeholder="Search"/>
         <button className="search-icon" type="submit"><FontAwesomeIcon className="search" icon="search"/></button>
       </div>  
     )
