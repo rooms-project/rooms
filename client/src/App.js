@@ -21,8 +21,8 @@ import Hamburguer from './components/hamburger/rooms-hamburger'
 
 /// Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSearch, faPersonBooth, faHeart, faUser } from '@fortawesome/free-solid-svg-icons'
 
-import { faSearch, faPersonBooth } from '@fortawesome/free-solid-svg-icons'
 
 
 import RoomIndex from './components/rooms-index'
@@ -101,5 +101,5 @@ class App extends Component {
 export default App;
 
 
-library.add(faSearch, faPersonBooth);
+library.add(faSearch, faPersonBooth, faHeart, faUser);
 
