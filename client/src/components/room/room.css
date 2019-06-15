@@ -2,7 +2,7 @@
 .room {
   height:100vh;
   display: flex; 
-  align-items: center;
+  align-content: space-between ;
   justify-content: flex-start;
   background: rgba(44,102,117,1);
   background: -moz-linear-gradient(top, rgb(110, 114, 116) 0%, rgba(28,44,77,1) 100%);

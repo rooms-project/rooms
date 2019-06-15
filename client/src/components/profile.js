@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import AuthServices from '../service/auth-services'
 import { Link } from 'react-router-dom'
+import roomServices from '../service/room-services'
+import userServices from '../service/user-services'
+import './box/box.css'
+import './room/room.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 class Profile extends Component {
 
@@ -8,54 +14,63 @@ class Profile extends Component {
         super(props)
         this.state = { username: '', password: '' }
         this.services = new AuthServices()
+        this.roomServices = new roomServices()
+        this.userServices = new userServices()
     }
+    componentDidMount() {
+        console.log(this.props.loggedInUser.username)
+        console.log(this.props.loggedInUser)
+        this.roomServices.getOneRoom(this.props.match.params.id)
+        
+            .then((theRoom) => {
+               
+                this.setState({ room: theRoom })
+                this.userServices.getOneUser(this.state.room.owner)
 
-    handleChange = e => {
-        const { name, value } = e.target;
-        this.setState({ [name]: value })
-    }
+                .then((theUser)=> {
+                    this.setState({ user: theUser })
+                })
 
-    handleSubmit = e => {
-
-        e.preventDefault()
-        const { username, password } = this.state
-        this.services.login(username, password)
-            .then(response => {
-                this.setState({ username: '', password: '' })
-                this.props.setTheUser(response)
             })
-            .catch(error => console.log(error.response.data.message))
-            window.location.href = `/map`
+
+            .catch(error => console.log(error))
+
     }
+
 
     render() {
         return (
-            <div className="login-form">
+            <div className="profile-container">
 
-                <div >
+                   <div className="profileHeader">
 
-                 
+                            <img className="profile-pic" src={this.props.loggedInUser.imageUrl} />
+                            <h1 className="roomname">{this.props.loggedInUser.username}</h1> 
 
-                    <div >
-                        <h1>Log In</h1>
-                        <form onSubmit={this.handleSubmit} action="/map">
-                           
-                             
-                                <input onChange={this.handleChange} value={this.state.username} type="text" className="form-control" id="username" name="username" placeholder="User Name"/>
-                         
-                       
-                                <input onChange={this.handleChange} value={this.state.password} type="password" className="form-control" id="password" name="password" placeholder="Password"/>
-            
-                            <button type="submit" >Login</button>
-
-                            <div className="login-link">
-                                 <p>Don't have an account yet ?</p>
-                                 <Link id="signup-link" to="/signup">Sign Up</Link>
-                            </div>
-                        </form>
                     </div>
 
-                </div>
+                    <div className="box">   
+
+
+
+                            <div className="room-header">
+                                <h1>Your Room:</h1>
+                                <p>{this.props.loggedInUser.room === [] ? this.props.loggedInUser.room : "You don't have a room yet"}</p>
+
+                                <div className='room-icons'>
+                                    {/* <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username}</p>
+                                    <p><FontAwesomeIcon  icon="heart"  className="like-button"/> {this.state.room.likes ? this.state.room.likes : "0"}</p>
+                                    <p><FontAwesomeIcon  icon="eye"  className="like-button"/> {this.state.room.views ? this.state.room.views : "0"}</p> */}
+                                </div>
+
+                                <div className='room-button-container'>
+                                    <button className='button-follow'>Follow</button>
+                                    <button className='button-like'><FontAwesomeIcon  icon="heart"  className="like-button"/></button>
+                                </div>
+
+                            </div>
+                    
+                    </div>
 
             </div>
         )

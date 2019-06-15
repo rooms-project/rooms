@@ -1,3 +1,7 @@
+.map-container {
+  display: flex;
+}
+
 .info-window-main {
   /* overflow: hidden!important; */
   padding: 10px;
