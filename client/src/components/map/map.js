@@ -127,7 +127,6 @@ export class MapContainer extends Component {
         {this.displayButton()}
       </div>
       </div>
-
     );
   }
 }

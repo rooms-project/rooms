@@ -143,8 +143,7 @@ margin-left: 1em;
 
 /* MODAL */
 .login-link {
-  display: inline;
-
+  text-align: center;
 }
 .blur {
   filter:opacity(0.5);
@@ -187,7 +186,6 @@ margin-left: 1em;
 }
 .signup-link {
   display: inline-block;
-  margin:10px 0px 0px 27px;
   color:rgb(176, 237, 255);
   
 }
