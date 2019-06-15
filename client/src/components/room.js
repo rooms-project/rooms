@@ -1,19 +1,32 @@
 import React, { Component } from 'react'
-import RoomService from '../service/room-services'
+import roomServices from '../service/room-services'
+import userServices from '../service/user-services'
 import { Link } from 'react-router-dom'
-import './room/room.css';
-import Box from '../components/box/box'
+import './box/box.css'
+import './room/room.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Room extends Component {
     constructor(props) {
         super(props)
-        this.state = { room: {} }
-        this.services = new RoomService()
+        this.state = { room: {}, user: {}}
+        this.roomServices = new roomServices()
+        this.userServices = new userServices()
     }
     componentDidMount() {
-        this.services.getOneRoom(this.props.match.params.id)
+        this.roomServices.getOneRoom(this.props.match.params.id)
             .then(theRoom => this.setState({ room: theRoom }))
+
+        console.log(this.props)
+
+        // this.userServices.getOneUser(this.state.room.owner)
+        //     .then((theUser)=> {
+        //         this.setState({ user: theUser })
+        //         console.log(theUser)
+        //         console.log(this.state.room.owner)
+        //     })
     }
+
     render() {
         return (
             <div className="room">
@@ -29,7 +42,10 @@ class Room extends Component {
                 <div className="box"> 
                     <h1 className="roomname">{this.state.room.roomname}</h1>
                     <p>{this.state.room.description}</p>
+                    <p><FontAwesomeIcon  icon="user"  className="profile-icon"/>{}</p>
                     <p>{this.state.room.tags}</p>
+                    <button>Follow</button>
+                    <button><FontAwesomeIcon  icon="heart"  className="like-button"/></button>
                 </div>
                 </div>
                 <div className="chat">
@@ -42,3 +58,4 @@ class Room extends Component {
     }
 }
 export default Room
+
