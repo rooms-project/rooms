@@ -56,7 +56,7 @@ width: 100%;
   flex-direction: column;
   color: white;
   margin-top:0;
-  padding: 3em;
+  padding: 0em 0em;
 
 }
 .chat-header {
@@ -125,7 +125,10 @@ width: 100%;
   display:flex;
   justify-content: center;
 }
-
+.conversation {
+  display: flex;
+  justify-content: center;
+}
 /* MEDIAQUERIES */
 
 @media (max-width: 976px) {  

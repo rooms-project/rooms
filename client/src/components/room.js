@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import './box/box.css'
 import './room/room.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Chat } from "./chat/Chat";
 
 class Room extends Component {
     constructor(props) {
@@ -18,10 +19,12 @@ class Room extends Component {
         
             .then((theRoom) => {
                 this.setState({ room: theRoom })
+                //console.log(this.state.room.owner)
                 this.userServices.getOneUser(this.state.room.owner)
 
                 .then((theUser)=> {
                     this.setState({ user: theUser })
+                     console.log(this.state.user)
                 })
 
             })
@@ -56,7 +59,7 @@ class Room extends Component {
                             <div className="room-header">
 
                                 <div className='room-icons'>
-                                    <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username}</p>
+                                    <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username !== undefined ? this.state.user.username : null}</p> 
                                     <p><FontAwesomeIcon  icon="heart"  className="like-button"/> {this.state.room.likes ? this.state.room.likes : "0"}</p>
                                     <p><FontAwesomeIcon  icon="eye"  className="like-button"/> {this.state.room.views ? this.state.room.views : "0"}</p>
                                 </div>
@@ -83,11 +86,12 @@ class Room extends Component {
              
                 <div className="chat">
                     <div className="chat-header">
-                        <h1>CHAT</h1>
+
                     </div>
-                    <div className="conversation"></div>
-                    <p>PEPE ============  Lasdfokmads[fmsa[dmfa[sdmfasdmf</p>
-                    <p>ijfadoifjaodifjaoidjfoasidjfoaisdjf =========PEPE2</p>
+                    <div className="conversation">
+                        <Chat />
+                    </div>
+                    
                 </div>
             </div>
         )
