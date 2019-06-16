@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
 import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CurrentLocation from './current-location'
 import RoomService from '../../service/room-services'
 import '../map/map.css';
 import Header from '../rooms-header'
 import MapSearchBar from '../searchBar/map-searchBar';
+
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faStickyNote } from "@fortawesome/free-solid-svg-icons";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faTags } from "@fortawesome/free-solid-svg-icons";
+
+
+
+
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -110,6 +120,17 @@ export class MapContainer extends Component {
     console.log(filteredRooms)
   }
 
+  getFollowers = () => {
+    console.log(this.state.selectedRoom.followers)
+    if (!this.state.selectedRoom.followers) return 0
+    return this.state.selectedRoom.followers.length
+  }
+  getTags = () => {
+    console.log(this.state.selectedRoom.tags)
+    if (!this.state.selectedRoom.tags) return "The room has no tags"
+    return this.state.selectedRoom.tags.map((tag) => (tag[0] === "#") ? tag : `#${tag} `)
+  }
+
   onClose = props => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -137,10 +158,15 @@ export class MapContainer extends Component {
           <img src={this.state.selectedRoom.imageUrl} alt={this.state.selectedRoom.roomname}/>
           </div>
           <div className="info-window-content">
-          <p>{this.state.selectedRoom.roomname}</p>
-          <p>{this.state.selectedRoom.description}</p>  
-          <a href={'/room/' + this.state.selectedRoom.id}>View {this.state.selectedRoom.roomname}</a>
-          <p>Followers {this.state.selectedRoom.followers}</p>  
+            <ul>
+              <li><FontAwesomeIcon className="icon-home" icon={faHome}/><span className="roomname">{this.state.selectedRoom.roomname}</span></li>
+              <li><FontAwesomeIcon className="icon" icon={faStickyNote}/><span>{this.state.selectedRoom.description}</span></li>
+              <li><FontAwesomeIcon className="icon" icon={faTags}/><span>{this.getTags()} </span></li>
+              <li><FontAwesomeIcon className="icon" icon={faUsers}/><span>{this.getFollowers()} followers</span></li>
+            </ul>
+          <button className="info-window-btn" dir={'/room/' + this.state.selectedRoom.id}>View room</button>
+          <button className="info-window-btn" dir={'/room/' + this.state.selectedRoom.id}>Follow</button>
+          <button className="info-window-btn" dir={'/room/' + this.state.selectedRoom.id}>Like</button>
           </div>    
         </div>
         </InfoWindow>
