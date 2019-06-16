@@ -85,11 +85,11 @@ class Room extends Component {
                 
              
                 <div className="chat">
-                    <div className="chat-header">
-
-                    </div>
-                    <div className="conversation">
-                        <Chat />
+                    <div className="box-chat"> 
+                        <div className="conversation">
+                            
+                            <Chat />
+                        </div>
                     </div>
                     
                 </div>

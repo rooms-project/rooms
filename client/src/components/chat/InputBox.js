@@ -8,6 +8,12 @@ const Input = styled.input`
   box-sizing: border-box;
   border: 0;
   border-radius:13px;
+  @media (max-width: 568px) {  
+    width: 36%;
+    }
+  // @media (min-width: 400px) and (max-width: 451px) {  
+  //   width: 51%;
+  //   }
 `;
 
 const Button = styled.a`
