@@ -8,6 +8,7 @@ const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
+const mongoose     = require('mongoose');
 
 
 
@@ -16,6 +17,14 @@ require('./configs/mongoose.config')
 
 
 
+// mongoose
+//   .connect('mongodb://localhost/back', {useNewUrlParser: true})
+//   .then(x => {
+//     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+//   })
+//   .catch(err => {
+//     console.error('Error connecting to mongo', err)
+//   });
 
 
 
