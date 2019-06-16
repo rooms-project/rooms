@@ -8,7 +8,10 @@ const roomSchema = new Schema({
         latitude: Number,
         longitude: Number,
     },
-    imageUrl: String, 
+    imageUrl: {
+        type: String, 
+        default: "https://visualpharm.com/assets/277/Room-595b40b85ba036ed117de0e6.svg"
+    },
     videoUrl: String,
     owner: String,
     tags: Array,

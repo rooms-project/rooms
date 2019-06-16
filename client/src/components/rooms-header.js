@@ -20,6 +20,7 @@ class navigation extends Component {
 
     render() {
         if (this.props.userInSession) {
+            console.log(this.props.userInSession)
 
             return (
               <div className="header-absolute">
@@ -32,7 +33,7 @@ class navigation extends Component {
                     <ul>
                     <li><p>Hi {this.props.userInSession.username}!</p></li>             
                     {/* <li><SearchBar/></li>              */}
-                    <li><Link to='/profile'>Your Profile</Link></li>
+                    <li><Link to={`/profile/${this.props.userInSession._id}`}>Your Profile</Link></li>
                     <li> <Link to='' ><div onClick={this.logout}>Sign Out</div></Link></li>
                     </ul>
                 </div>
@@ -51,7 +52,7 @@ class navigation extends Component {
                     </div>
                     <ul>
                     {/* <li><SearchBar search=""/></li>        */}
-                    <li><Link to='/profile'>Your Profile</Link></li>
+                    <li><Link to='/signup'>Sign Up</Link></li>
                     <li> <Link to="/login">Log In</Link></li>
                     </ul>
                 </div>

@@ -1,25 +1,22 @@
-import React, { Component } from 'react'
-import { GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import CurrentLocation from './current-location'
-import RoomService from '../../service/room-services'
-import '../map/map.css';
-import Header from '../rooms-header'
-import MapSearchBar from '../searchBar/map-searchBar';
+import React, { Component } from "react";
+import { GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CurrentLocation from "./current-location";
+import RoomService from "../../service/room-services";
+import "../map/map.css";
+import Header from "../rooms-header";
+import MapSearchBar from "../searchBar/map-searchBar";
+import InfoWindowEx from "./InfoWindowEx";
 
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faStickyNote } from "@fortawesome/free-solid-svg-icons";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 
-
-
-
-
 export class MapContainer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       showingInfoWindow: false,
       activeMarker: {},
@@ -27,21 +24,24 @@ export class MapContainer extends Component {
       displayViewButton: false,
       Rooms: [],
       filteredRooms: []
-    }
-    this.services = new RoomService()
+    };
+    this.services = new RoomService();
   }
 
   componentDidMount() {
-    this.services.getAllRooms()
-        .then(allRooms => this.setState({ Rooms: allRooms }))
-        .then(() => this.setState({filteredRooms: this.state.Rooms}))
-        .catch((err) => console.log(err))
+    this.services
+      .getAllRooms()
+      .then(allRooms => this.setState({ Rooms: allRooms }))
+      .then(() => this.setState({ filteredRooms: this.state.Rooms }))
+      .catch(err => console.log(err));
   }
 
-  getUserRoom() { return this.props.userInSession.room[0] }
-  
+  getUserRoom() {
+    return this.props.userInSession.room[0];
+  }
+
   displayMarkers = () => {
-    const {google} = this.props;
+    const { google } = this.props;
     const svg = `
     data:image/svg+xml;utf-8, \
     <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
@@ -54,47 +54,82 @@ export class MapContainer extends Component {
       <feGaussianBlur stdDeviation="0.1" in="SourceGraphic"/>
     </filter>
     </defs>
-    </svg>`
+    </svg>`;
     const icon = {
       path: google.maps.SymbolPath.CIRCLE,
       scale: 7,
-      fillColor: 'tomato',
-      strokeColor: 'tomato',
-      fill: 'tomato',
+      fillColor: "tomato",
+      strokeColor: "tomato",
+      fill: "tomato",
       fillOpacity: 0.8,
-      strokeWeight: 2,
-    }
+      strokeWeight: 2
+    };
 
-    return this.state.filteredRooms.map((room) => {
-          if (!room.location) {
-            return null
-          }
-          return <Marker key={room._id} id={room._id} room={room} position={{         
+    return this.state.filteredRooms.map(room => {
+      if (!room.location) {
+        return null;
+      }
+      return (
+        <Marker
+          key={room._id}
+          id={room._id}
+          room={room}
+          position={{
             lat: room.location.latitude,
             lng: room.location.longitude
           }}
-          icon = {icon}
-          onClick={this.onMarkerClick} />
-    })
-  }
-  
+          icon={icon}
+          onClick={this.onMarkerClick}
+        />
+      );
+    });
+  };
+
   displayViewButton = () => {
-    if (this.state.displayViewButton === true) return <Link className="map-buttons" to={`/room/${this.state.selectedRoom._id}`}>View this room</Link>
-  }
+    if (this.state.displayViewButton === true)
+      return (
+        <Link
+          className="map-buttons"
+          to={`/room/${this.state.selectedRoom._id}`}
+        >
+          View this room
+        </Link>
+      );
+  };
 
   displayButton = () => {
-    if (!this.props.userInSession) return <Link className="map-buttons" to="/login">Create a room</Link>
-    else if (this.props.userInSession.room.length === 0) return <Link className="map-buttons" to="/create" user={this.props.userInSession}>Create room</Link>
-    else return <Link className="map-buttons" to={`/room/${this.getUserRoom()}`}>Go to your room</Link>
-  }
+    if (!this.props.userInSession)
+      return (
+        <Link className="map-buttons" to="/login">
+          Create a room
+        </Link>
+      );
+    else if (this.props.userInSession.room.length === 0)
+      return (
+        <Link
+          className="map-buttons"
+          to="/create"
+          user={this.props.userInSession}
+        >
+          Create room
+        </Link>
+      );
+    else
+      return (
+        <Link className="map-buttons" to={`/room/${this.getUserRoom()}`}>
+          Go to your room
+        </Link>
+      );
+  };
 
-  pickRandom = (marker) => {
-    const random = Math.floor(Math.random() * (this.state.Rooms.length - 0)) + 0
-    const randomRoom = this.state.Rooms[random]
+  pickRandom = marker => {
+    const random =
+      Math.floor(Math.random() * (this.state.Rooms.length - 0)) + 0;
+    const randomRoom = this.state.Rooms[random];
     this.setState({
-      selectedRoom: randomRoom,
-    })
-  }
+      selectedRoom: randomRoom
+    });
+  };
 
   onMarkerClick = (props, marker, e) => {
     this.setState({
@@ -103,33 +138,39 @@ export class MapContainer extends Component {
       showingInfoWindow: true,
       displayViewButton: true
     });
-  }
+  };
 
   checkUser = () => {
-    console.log(this.props)
-  }
-  checkRooms = () => {
-    return this.state.Rooms
-  }
+    console.log(this.props);
+  };
 
-  search = (search) => {
-    console.log('State en searchbar', this.state);
-		let filteredRooms = [ ...this.state.Rooms ];
-		filteredRooms = filteredRooms.filter((room) => room.roomname.toLowerCase().includes(search.toLowerCase()))
-    this.setState({ filteredRooms });    
-    console.log(filteredRooms)
-  }
+  checkRooms = () => {
+    return this.state.Rooms;
+  };
+
+  search = search => {
+    console.log("State en searchbar", this.state);
+    let filteredRooms = [...this.state.Rooms];
+    filteredRooms = filteredRooms.filter(room =>
+      room.roomname.toLowerCase().includes(search.toLowerCase())
+    );
+    this.setState({ filteredRooms });
+    console.log(filteredRooms);
+  };
 
   getFollowers = () => {
-    console.log(this.state.selectedRoom.followers)
-    if (!this.state.selectedRoom.followers) return 0
-    return this.state.selectedRoom.followers.length
-  }
+    console.log(this.state.selectedRoom.followers);
+    if (!this.state.selectedRoom.followers) return 0;
+    return this.state.selectedRoom.followers.length;
+  };
+
   getTags = () => {
-    console.log(this.state.selectedRoom.tags)
-    if (!this.state.selectedRoom.tags) return "The room has no tags"
-    return this.state.selectedRoom.tags.map((tag) => (tag[0] === "#") ? tag : `#${tag} `)
-  }
+    console.log(this.state.selectedRoom.tags);
+    if (!this.state.selectedRoom.tags) return "The room has no tags";
+    return this.state.selectedRoom.tags.map(tag =>
+      tag[0] === "#" ? tag : `#${tag} `
+    );
+  };
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
@@ -140,48 +181,157 @@ export class MapContainer extends Component {
       });
     }
   };
+  enterRoom = () => {
+    console.log("Hola");
+    console.log(this.state.selectedRoom);
+    window.location.href = `/room/${this.state.selectedRoom._id}`;
+  };
 
   render() {
     return (
       <div className="map-container">
-      <MapSearchBar search={this.search}/>
-      <CurrentLocation randomRoom={this.state.selectedRoom} centerAroundCurrentLocation google={this.props.google}>
-        {this.displayMarkers()}
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-          onClose={this.onClose}
-          className="info-window-main"
+        <MapSearchBar search={this.search} />
+        <CurrentLocation
+          randomRoom={this.state.selectedRoom}
+          centerAroundCurrentLocation
+          google={this.props.google}
         >
-        <div className="info-window">
-          <div className="info-window-img">
-          <img src={this.state.selectedRoom.imageUrl} alt={this.state.selectedRoom.roomname}/>
-          </div>
-          <div className="info-window-content">
-            <ul>
-              <li><FontAwesomeIcon className="icon-home" icon={faHome}/><span className="roomname">{this.state.selectedRoom.roomname}</span></li>
-              <li><FontAwesomeIcon className="icon" icon={faStickyNote}/><span>{this.state.selectedRoom.description}</span></li>
-              <li><FontAwesomeIcon className="icon" icon={faTags}/><span>{this.getTags()} </span></li>
-              <li><FontAwesomeIcon className="icon" icon={faUsers}/><span>{this.getFollowers()} followers</span></li>
-            </ul>
-          <button className="info-window-btn" dir={'/room/' + this.state.selectedRoom.id}>View room</button>
-          <button className="info-window-btn" dir={'/room/' + this.state.selectedRoom.id}>Follow</button>
-          <button className="info-window-btn" dir={'/room/' + this.state.selectedRoom.id}>Like</button>
-          </div>    
-        </div>
-        </InfoWindow>
+          {this.displayMarkers()}
+          {/* <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            onClose={this.onClose}
+            className="info-window-main"
+          >
+            <div className="info-window">
+              <div className="info-window-img">
+                <img
+                  src={this.state.selectedRoom.imageUrl}
+                  alt={this.state.selectedRoom.roomname}
+                />
+              </div>
+              <div className="info-window-content">
+                <ul>
+                  <li>
+                    <FontAwesomeIcon className="icon-home" icon={faHome} />
+                    <span className="roomname">
+                      {this.state.selectedRoom.roomname}
+                    </span>
+                  </li>
+                  <li>
+                    <FontAwesomeIcon className="icon" icon={faStickyNote} />
+                    <span>{this.state.selectedRoom.description}</span>
+                  </li>
+                  <li>
+                    <FontAwesomeIcon className="icon" icon={faTags} />
+                    <span>{this.getTags()} </span>
+                  </li>
+                  <li>
+                    <FontAwesomeIcon className="icon" icon={faUsers} />
+                    <span>{this.getFollowers()} followers</span>
+                  </li>
+                </ul>
+                <button
+                  type="button"
+                  className="info-window-btn"
+                  onClick={this.enterRoom()}
+                  dir={"/room/" + this.state.selectedRoom.id}
+                >
+                  View room
+                </button>
 
-      </CurrentLocation>
-      <div className="map-menu">  
-        {this.displayViewButton()} 
-        <button type="submit" className="map-buttons" onClick={this.pickRandom}>Random room</button>
-        {this.displayButton()}
-      </div>
+                <button
+                  className="info-window-btn"
+                  dir={"/room/" + this.state.selectedRoom.id}
+                >
+                  Follow
+                </button>
+
+                <button
+                  className="info-window-btn"
+                  dir={"/room/" + this.state.selectedRoom.id}
+                >
+                  Like
+                </button>
+              </div>
+            </div>
+          </InfoWindow> */}
+          <InfoWindowEx
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            onClose={this.onClose}
+            className="info-window-main"
+          >
+            <div className="info-window">
+              <div className="info-window-img">
+                <img
+                  src={this.state.selectedRoom.imageUrl}
+                  alt={this.state.selectedRoom.roomname}
+                />
+              </div>
+              <div className="info-window-content">
+                <ul>
+                  <li>
+                    <FontAwesomeIcon className="icon-home" icon={faHome} />
+                    <span className="roomname">
+                      {this.state.selectedRoom.roomname}
+                    </span>
+                    <FontAwesomeIcon className="icon-user" icon="user" />
+                    <span className="owner">Hola</span>
+                  </li>
+                  <li>
+                    <FontAwesomeIcon className="icon" icon={faStickyNote} />
+                    <span>{this.state.selectedRoom.description}</span>
+                  </li>
+                  <li>
+                    <FontAwesomeIcon className="icon" icon={faTags} />
+                    <span>{this.getTags()} </span>
+                  </li>
+                  <li>
+                    <FontAwesomeIcon className="icon" icon={faUsers} />
+                    <span>{this.getFollowers()} followers</span>
+                  </li>
+                </ul>
+                <button
+                  type="button"
+                  className="info-window-btn"
+                  onClick={this.enterRoom}
+                >
+                  Enter room
+                </button>
+
+                <button
+                  className="info-window-btn"
+                  dir={"/room/" + this.state.selectedRoom.id}
+                >
+                  Follow
+                </button>
+
+                <button
+                  className="info-window-btn"
+                  dir={"/room/" + this.state.selectedRoom.id}
+                >
+                  Like
+                </button>
+              </div>
+            </div>
+          </InfoWindowEx>
+        </CurrentLocation>
+        <div className="map-menu">
+          <button
+            type="submit"
+            className="map-buttons"
+            onClick={this.pickRandom}
+          >
+            Random room
+          </button>
+          {this.displayButton()}
+        </div>
       </div>
     );
   }
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyC9-z5odg8Pfi0AMseMq_6KocFN09_9FSw'
+  apiKey: "AIzaSyC9-z5odg8Pfi0AMseMq_6KocFN09_9FSw"
 })(MapContainer);

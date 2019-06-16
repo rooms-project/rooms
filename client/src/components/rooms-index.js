@@ -48,7 +48,8 @@ class Index extends Component {
 
           <div className="login">
             {console.log('este es el loggedinuser de index ' + this.state.loggedInUser)}
-          {this.props.userInSession ? null: <LoginForm setUser={this.props.setUser} setUserIndex={()=>this.setState({ loggedInUser:" userObj" })} displayInfo/>}
+          {this.props.userInSession ? null : <Link className="button-login" to="/login">Log In</Link>}
+          {/* <LoginForm setUser={this.props.setUser} setUserIndex={()=>this.setState({ loggedInUser:" userObj" })} displayInfo/>} */}
           {/* {this.props.userInSession ? null: <LoginForm setUser={this.props.setUser} displayInfo/>} */}
           {/* <button className='button-login' onClick={this.handleClick}>LOG IN</button> */}
           </div>
