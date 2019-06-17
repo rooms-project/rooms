@@ -15,7 +15,9 @@ const MessageWrapper = styled.div`
 `;
 
 export const Message = ({ children, server = false }) => (
-  <MessageWrapper server={server}>
+ 
+  <MessageWrapper server={server} className="messageWrapper">
     <MessageInner server={server}>{children}</MessageInner>
   </MessageWrapper>
+
 );

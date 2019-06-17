@@ -10,7 +10,7 @@ const ChatWrapper = styled.div`
   //border: 1px solid white;
   padding: 10px;
   width: 500px;
-  // height:300px;
+  max-height:400px;
 `;
 
 const injectStateArray = withState("messages", "setMessages", []);
@@ -33,7 +33,7 @@ const chatInjector = compose(
 );
 
 export const Chat = chatInjector(({ messages, setMessages }) => (
-  <ChatWrapper>
+  <ChatWrapper className="message-container">
     {messages.map(({ type, msg }, i) => (
       <Message server={type === "server" ? true : false} key={i}>
         {msg}
