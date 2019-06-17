@@ -28,6 +28,8 @@ export class MapContainer extends Component {
     this.services = new RoomService();
   }
 
+  
+
   componentDidMount() {
     this.services
       .getAllRooms()
@@ -335,3 +337,5 @@ export class MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: "AIzaSyC9-z5odg8Pfi0AMseMq_6KocFN09_9FSw"
 })(MapContainer);
+
+

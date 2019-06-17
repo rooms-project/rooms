@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import roomServices from '../service/room-services'
 import userServices from '../service/user-services'
 import './box/box.css'
+import './profile/profile.css'
 import './room/room.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -49,7 +50,7 @@ class Profile extends Component {
 
                    </div>
 
-                   <div className="box">
+                   <div className="box box-profile">
 
 
 
@@ -63,10 +64,26 @@ class Profile extends Component {
                                    <p><FontAwesomeIcon  icon="eye"  className="like-button"/> {this.state.room.views ? this.state.room.views : "0"}</p> */}
                                </div>
 
-                               <div className='room-button-container'>
+                               {/* <div className='room-button-container'>
                                    <button className='button-follow'>Follow</button>
                                    <button className='button-like'><FontAwesomeIcon  icon="heart"  className="like-button"/></button>
-                               </div>
+                               </div> */}
+
+                           </div>
+
+                   </div>
+
+                   <div className="box box-profile">
+
+
+
+                           <div className="room-header">
+                               <h1>Following:</h1>
+                               <p>{this.props.loggedInUser.room === [] ? this.props.loggedInUser.following : "You don't follow any rooms"}</p>
+
+                             
+
+                        
 
                            </div>
 
