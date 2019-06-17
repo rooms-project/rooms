@@ -1,30 +1,46 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const Room = require('../models/room-model')
-const User = require("../models/user-model")
+const Room = require("../models/room-model");
+const User = require("../models/user-model");
 
-router.get('/getAllRooms', (req, res) => {
-    Room.find()
-        .then(data => res.json(data))
-        .catch(err => console.log('Error:', err))
-})
+router.get("/getAllRooms", (req, res) => {
+  Room.find()
+    .then(data => res.json(data))
+    .catch(err => console.log("Error:", err));
+});
 
-router.get('/getOneRoom/:id', (req, res) => {
-    Room.findById(req.params.id)
-        .then(data => res.json(data))
-        .catch(err => console.log('Error:', err))
-})
+router.get("/getOneRoom/:id", (req, res) => {
+  Room.findById(req.params.id)
+    .then(data => res.json(data))
+    .catch(err => console.log("Error:", err));
+});
 
-router.post('/newRoom', (req, res) => {
- //   const {CURRAUNPOCO} = req.body
-    Room.create(req.body)
-        .then(room => {
-            User.findByIdAndUpdate(room.owner,  { $push: { room: room._id }}, { new: true })
-            .then(() => res.json(room))
-            .catch(err => console.log("Error:", err))
-        })
-        .catch(err => console.log('Error:', err))
-})
+router.post("/newRoom", (req, res) => {
+  //   const {CURRAUNPOCO} = req.body
+  Room.create(req.body)
+    .then(room => {
+      User.findByIdAndUpdate(
+        room.owner,
+        { $push: { room: room._id } },
+        { new: true }
+      )
+        .then(() => res.json(room))
+        .catch(err => console.log("Error:", err));
+    })
+    .catch(err => console.log("Error:", err));
+});
 
-module.exports = router
+router.put("/updateRoom/:id", (req, res, next) => {
+  Room.findByIdAndUpdate(
+    req.params.id,
+    { $set: { ...req.body } },
+    { new: true }
+  )
+    .then(updatedRoom => {
+      res.json(updatedRoom);
+    })
+    .catch(err => console.log(err));
+});
+
+module.exports = router;
