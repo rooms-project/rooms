@@ -6,7 +6,6 @@ import './box/box.css'
 import './room/room.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Chat } from "./chat/Chat";
-
 class Room extends Component {
     constructor(props) {
         super(props)
@@ -22,18 +21,13 @@ class Room extends Component {
                 this.setState({ room: theRoom })
                 //console.log(this.state.room.owner)
                 this.userServices.getOneUser(this.state.room.owner)
-
                 .then((theUser)=> {
                     this.setState({ user: theUser })
                      console.log(this.state.user)
                 })
-
             })
-
             .catch(error => console.log(error))
-
     }
-
     render() {
         return (
             <div className="room">
@@ -49,9 +43,7 @@ class Room extends Component {
                     Your browser does not support the video tag.
                     </video>
                     </div>
-
                         <div className="box"> 
-
                             <div className="room-card-container">
 
                                     <h1 className="roomname">{this.state.room.roomname}</h1>
@@ -63,7 +55,6 @@ class Room extends Component {
                                         <p><FontAwesomeIcon  icon="heart"  className="like-button"/> {this.state.room.likes ? this.state.room.likes : "0"}</p>
                                         <p><FontAwesomeIcon  icon="eye"  className="like-button"/> {this.state.room.views ? this.state.room.views : "0"}</p>
                                     </div>
-
                                     <div className='room-button-container'>
                                         <button className='button-follow'>Follow</button>
                                         <button className='button-like'><FontAwesomeIcon  icon="heart"  className="like-button"/></button>
@@ -98,4 +89,3 @@ class Room extends Component {
     }
 }
 export default Room
-

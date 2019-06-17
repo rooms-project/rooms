@@ -22,6 +22,9 @@
   font-size: 1.2em;
 }
 
+.info-window-tags {
+}
+
 .info-window-content .icon-user {
   margin-left: 15px;
 }
@@ -80,6 +83,28 @@
 }
 .info-window-btn:focus {
   outline: none;
+}
+
+.info-window-tag {
+  color: white;
+  text-decoration: none;
+  font-size: inherit;
+  border: 0;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.info-window-tag:hover {
+  text-decoration: underline;
+}
+
+.info-window-tag:focus {
+  outline: none;
+}
+
+.info-window-following {
+  background: white;
+  color: #212529;
 }
 
 /* Menu */
