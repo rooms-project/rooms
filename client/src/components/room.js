@@ -14,6 +14,7 @@ class Room extends Component {
         this.roomServices = new roomServices()
         this.userServices = new userServices()
     }
+
     componentDidMount() {
         this.roomServices.getOneRoom(this.props.match.params.id)
         
@@ -31,7 +32,6 @@ class Room extends Component {
 
             .catch(error => console.log(error))
 
-       
     }
 
     render() {
@@ -54,23 +54,23 @@ class Room extends Component {
 
                             <div className="room-card-container">
 
-                                <h1 className="roomname">{this.state.room.roomname}</h1>
+                                    <h1 className="roomname">{this.state.room.roomname}</h1>
 
-                            <div className="room-header">
+                                <div className="room-header">
 
-                                <div className='room-icons'>
-                                    <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username !== undefined ? this.state.user.username : null}</p> 
-                                    <p><FontAwesomeIcon  icon="heart"  className="like-button"/> {this.state.room.likes ? this.state.room.likes : "0"}</p>
-                                    <p><FontAwesomeIcon  icon="eye"  className="like-button"/> {this.state.room.views ? this.state.room.views : "0"}</p>
+                                    <div className='room-icons'>
+                                        <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username !== undefined ? this.state.user.username : null}</p> 
+                                        <p><FontAwesomeIcon  icon="heart"  className="like-button"/> {this.state.room.likes ? this.state.room.likes : "0"}</p>
+                                        <p><FontAwesomeIcon  icon="eye"  className="like-button"/> {this.state.room.views ? this.state.room.views : "0"}</p>
+                                    </div>
+
+                                    <div className='room-button-container'>
+                                        <button className='button-follow'>Follow</button>
+                                        <button className='button-like'><FontAwesomeIcon  icon="heart"  className="like-button"/></button>
+                                    </div>
+
                                 </div>
-
-                                <div className='room-button-container'>
-                                    <button className='button-follow'>Follow</button>
-                                    <button className='button-like'><FontAwesomeIcon  icon="heart"  className="like-button"/></button>
-                                </div>
-
                             </div>
-                        </div>
 
                         <p>{this.state.room.description}</p>
                         <p>{this.state.room.tags}</p>
@@ -79,7 +79,7 @@ class Room extends Component {
                         <p>Streams: {this.state.room.streams ? this.state.room.streams : "0"}</p>
                         </div>
 
-                    </div>
+                        </div>
 
                 </div>
                 
