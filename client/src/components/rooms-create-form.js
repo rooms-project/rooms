@@ -113,10 +113,10 @@ class CreateRoom extends Component {
     e.preventDefault();
     let tags = this.state.room.tags
     this.getHashTags(tags)
-    // this.services.postRoom(this.state.room).then(room => {
-    //   console.log(room);
-    //   window.location.href = `/room/${room._id}`;
-    // });
+    this.services.postRoom(this.state.room).then(room => {
+      console.log(room);
+      window.location.href = `/room/${room._id}`;
+    });
   };
 
   render() {

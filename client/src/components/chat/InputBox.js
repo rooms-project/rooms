@@ -8,8 +8,11 @@ const Input = styled.input`
   box-sizing: border-box;
   border: 0;
   border-radius:13px;
-  @media (max-width: 568px) {  
-    width: 36%;
+  @media (max-width: 400px) {  
+    width: 207px;
+    }
+  @media (min-width:460) and (max-width: 568px){  
+    width: 278px;
     }
   // @media (min-width: 400px) and (max-width: 451px) {  
   //   width: 51%;
@@ -53,7 +56,7 @@ export class InputBox extends Component {
   render() {
     const { text } = this.state;
     return (
-      <div>
+      <div className="input-chat">
         <Input
           value={text}
           onKeyPress={e => {

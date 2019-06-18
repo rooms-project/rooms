@@ -1,7 +1,7 @@
 /* ROOM */
 .room {
   height:100vh;
-  display: flex; 
+  display: flex;
   align-content: space-between ;
   justify-content: flex-start;
   background: rgba(44,102,117,1);
@@ -16,11 +16,15 @@
 }
 
 .videoplayer {
+margin-top: 70px;
 display: flex;
 flex-direction: column;
 justify-content: center;
 padding: 1em;
 width:100vw;
+}
+.video {
+ margin-bottom: 30px;
 }
 .videoplayer video {
 width: 100%;
@@ -33,7 +37,7 @@ width: 100%;
   display: flex;
   flex-wrap: wrap;
   width:100%;
-  
+
 }
 
 .box p {
@@ -130,61 +134,78 @@ width: 100%;
 
 
 /* CHAT */
-.conversation {
-  display: flex;
-  justify-content: center;
-}
+
+
 .message-container {
-  max-height: 300px;
+  height: 500px;
+  max-height: 571px;
+  overflow-y: scroll; 
 }
+.message-wrapper {
+  max-height: 571px;
+  height: 500px;
+}
+/* .css-ehelym {
+  max-height: 571px;
+  height: 500px;
+} */
 .box-chat {
   max-width:43em;
   margin: 0 auto;
   background: rgba(255,255,255, 0.1);
   border-radius: 10px;
-  padding: 30px;
   display: flex;
   align-items: flex-end;
+  padding:20px;
   width:100%;
   margin-top: 72px;
   height: 633px;
-  overflow: auto;
+  overflow-y: scroll;
 }
 
 
-@media (max-width: 976px) {  
+
+
+@media (max-width: 976px) {
 
   .room {
     flex-direction: column;
     height:200vh;
-
+    
   }
+  .chat-container {
+    height: 260px;
+  }
+  .message-container{
+    height: 200px
+  }
+  
 }
 
-@media (min-width: 100px) and (max-width: 568px) {  
-  
+@media (min-width: 100px) and (max-width: 568px) {
+
   .messageWrapper{
     width: 57%;
   }
-     
+
  }
 
-@media (min-width: 100px) and (max-width: 976px) {  
-  
+@media (min-width: 100px) and (max-width: 976px) {
+
 
   .box-chat {
     margin-top: 0;
+    height: 300px;
   }
-     
+
  }
 
-@media (min-width: 1300px) and (max-width: 1440px) {  
-  
+@media (min-width: 1300px) and (max-width: 1440px) {
+
 
   .box-chat {
     height: 572px;
     margin-right:2em;
   }
-     
+
  }
- 

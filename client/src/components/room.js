@@ -13,6 +13,7 @@ class Room extends Component {
         this.roomServices = new roomServices()
         this.userServices = new userServices()
     }
+
     componentDidMount() {
         this.roomServices.getOneRoom(this.props.match.params.id)
         
@@ -33,19 +34,23 @@ class Room extends Component {
                 
                 <div className="videoplayer">
                     <div className="video">
-                    <video controls="controls" 
+                    {/* <video controls="controls" 
                         className="video-stream" 
                         x-webkit-airplay="allow" 
                         data-youtube-id="N9oxmRT2YWw"  
                         src="http://www.youtube.com/watch?v=OmxT8a9RWbE"
                         >
                     Your browser does not support the video tag.
-                    </video>
+                    </video> */}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/uTnFrh6CyK4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                         <div className="box"> 
                             <div className="room-card-container">
+
                                     <h1 className="roomname">{this.state.room.roomname}</h1>
+
                                 <div className="room-header">
+
                                     <div className='room-icons'>
                                         <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username !== undefined ? this.state.user.username : null}</p> 
                                         <p><FontAwesomeIcon  icon="heart"  className="like-button"/> {this.state.room.likes ? this.state.room.likes : "0"}</p>
@@ -55,24 +60,26 @@ class Room extends Component {
                                         <button className='button-follow'>Follow</button>
                                         <button className='button-like'><FontAwesomeIcon  icon="heart"  className="like-button"/></button>
                                     </div>
+
                                 </div>
                             </div>
+
                         <p>{this.state.room.description}</p>
                         <p>{this.state.room.tags}</p>
                         <div className="followers-streams">
                         <p>Followers: {this.state.room.followers === []? this.state.room.followers : "0"}</p>
                         <p>Streams: {this.state.room.streams ? this.state.room.streams : "0"}</p>
                         </div>
+
                         </div>
+
                 </div>
                 
              
                 <div className="chat">
                     <div className="box-chat"> 
-                        <div className="conversation">
                             
                             <Chat />
-                        </div>
                     </div>
                     
                 </div>

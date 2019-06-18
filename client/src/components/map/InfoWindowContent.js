@@ -153,6 +153,7 @@ class InfoWindowContent extends Component {
 
   render() {
     return (
+      
       <div className="info-window">
         <div className="info-window-img">
           <img

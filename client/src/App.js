@@ -50,7 +50,7 @@ class App extends Component {
       <Route path="/room/:id" component={Room} />
       <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />    
       <Route path="/create" render={()=> <CreateRoom userInSession={this.state.loggedInUser} setUser={this.setUser} />} />    
-      <Route path="/chat" component={Chat} />
+      <Route path="/chat" userInSession={this.state.loggedInUser} component={Chat} />
       {/* <Route path="/map" component={Map} user={this.state.loggedInUser} setTheUser={this.setUser} /> */}
      </Switch>
     </div>
@@ -69,7 +69,7 @@ class App extends Component {
       <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />    
       {/* <Route path="/map" component={Map} /> */}
       <Route path="/room/:id" component={Room} />
-      <Route path="/chat" component={Chat} />
+      <Route path="/chat" userInSession={this.state.loggedInUser} component={Chat} />
       <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
       <Route path="/login" render={() => <Login setTheUser={this.setUser} />} /> 
       {/* <Route path="/login" render={() => <Login setTheUser={this.setUser} />} /> */}
