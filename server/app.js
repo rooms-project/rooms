@@ -46,7 +46,7 @@ app.use(passport.session());
 app.set('view engine', 'hbs');
 
 // configuracion middleware CORS
-const whitelist = ['http://localhost:5000']
+const whitelist = ['http://localhost:5000', 'http://localhost:3001']
 const corsOptions = {
   origin: (origin, cb) => {
     const originIsWhitelisted = whitelist.includes(origin);
