@@ -1,11 +1,13 @@
 import axios from 'axios'
 
+
+
 export default class services {
 
     constructor() {
 
         this.service = axios.create({
-            baseURL: 'http://localhost:3000/api/users/'
+            baseURL: `${process.env.REACT_APP_URL}users/`
         })
     }
     getAllUsers = () => {

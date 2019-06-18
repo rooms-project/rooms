@@ -9,7 +9,8 @@ const Schema = mongoose.Schema
 const hashPass = bcrypt.hashSync('1234', bcrypt.genSaltSync(8), null);
 
 
-mongoose.connect("mongodb://localhost:27017/Rooms", { useNewUrlParser: true })
+// mongoose.connect("mongodb://localhost:27017/Rooms", { useNewUrlParser: true })
+mongoose.connect(process.env.DB, { useNewUrlParser: true })
 
 
 
