@@ -4,6 +4,7 @@ import Header from "./rooms-header";
 import LoginForm from "./auth/rooms-login-form";
 import CoasterServices from "../service/coaster-services";
 import { Link } from "react-router-dom";
+import "./glitch/glitch.scss"
 
 class Index extends Component {
   constructor(props) {
@@ -39,8 +40,8 @@ class Index extends Component {
           </div>
 
           <div className="search-container">
-            <Link to="/map">
-              <FontAwesomeIcon className="search" icon="search" />
+            <Link to="/map" className="search glitch">
+              <FontAwesomeIcon icon="search" />
             </Link>
           </div>
 

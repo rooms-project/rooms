@@ -34,14 +34,15 @@ class Room extends Component {
                 
                 <div className="videoplayer">
                     <div className="video">
-                    <video controls="controls" 
+                    {/* <video controls="controls" 
                         className="video-stream" 
                         x-webkit-airplay="allow" 
                         data-youtube-id="N9oxmRT2YWw"  
                         src="http://www.youtube.com/watch?v=OmxT8a9RWbE"
                         >
                     Your browser does not support the video tag.
-                    </video>
+                    </video> */}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/uTnFrh6CyK4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                         <div className="box"> 
                             <div className="room-card-container">
@@ -77,10 +78,8 @@ class Room extends Component {
              
                 <div className="chat">
                     <div className="box-chat"> 
-                        <div className="conversation">
                             
                             <Chat />
-                        </div>
                     </div>
                     
                 </div>

@@ -92,7 +92,7 @@ class InfoWindowContent extends Component {
         followers: this.state.selectedRoom.followers
       }
     });
-
+   
     console.log(this.state.selectedRoom.followers);
     console.log(this.props.user.following);
   };
@@ -120,6 +120,7 @@ class InfoWindowContent extends Component {
 
   render() {
     return (
+      
       <div className="info-window">
         <div className="info-window-img">
           <img
