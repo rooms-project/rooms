@@ -64,7 +64,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); //***Deploy: No borrar esta línea
 
 
 //const coasterRoutes = require('./routes/coaster.routes')
@@ -88,6 +88,8 @@ app.use('/api', authRoutes);
 // Middleware subida de archivos Cloudinary
 const fileRoutes = require('./routes/file-upload.routes')
 app.use('/api', fileRoutes);
+
+//***Deploy: Añadir app.use
 
 
 module.exports = app;

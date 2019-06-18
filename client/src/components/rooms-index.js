@@ -4,6 +4,8 @@ import Header from "./rooms-header";
 import LoginForm from "./auth/rooms-login-form";
 import CoasterServices from "../service/coaster-services";
 import { Link } from "react-router-dom";
+import logo from "./logo/rooms-white.svg";
+
 
 class Index extends Component {
   constructor(props) {
@@ -31,7 +33,7 @@ class Index extends Component {
         <div className="rooms-index">
           {/* <Header userInSession={this.state.loggedInUser} setUser={this.setUser}/> */}
           <div className="index-info">
-            <img src="./logo/rooms-white.svg" alt="rooms" />
+            <img src={logo} alt="rooms" />
             <p>
               It’s a social media streaming platform that shares your room with
               the world…

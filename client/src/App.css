@@ -9,12 +9,10 @@ width: 100%
   display: flex;
   justify-content: space-between;
   z-index: 1000;
-
 }
 
 .header ul {
-  display: flex;
-  
+  display: flex;  
   color: white;
 }
 
@@ -29,11 +27,18 @@ width: 100%
   text-decoration: none;
   color: white;
 }
+.header img {
+  width: 100px;
+  margin-left: 3%;
+}
 
 .logo-type {
   z-index: 1000000;
-  margin-top:1em;
   display: flex;
+}
+.logo-type img {
+  width: 100px;
+  margin-left: 25%;
 }
 
 .logo-type-hamb {
@@ -129,7 +134,7 @@ margin-left: 1em;
 .index-info {
   font-family: helvetica;
   margin-top:18em;
-  margin-left:1em;
+  margin-left:10%;
   color: white;
 }
 .index-info h3 {
@@ -138,7 +143,13 @@ margin-left: 1em;
 }
 .index-info p {
   font-weight: bolder;
-  font-size: 1.1em;
+  font-size: 2em;
+  width: 50%;
+  letter-spacing: 3px;
+}
+
+.index-info img {
+  width: 350px;
 }
 
 /* MODAL */
@@ -313,15 +324,20 @@ margin-left: 1em;
     text-decoration: none;
     color: white;
   }
+  .header img {
+    width: 50px;
+  }
 
   .search-bar {
     border-radius:30px;
   }
   
   .logo-type {
-    margin-top:1em;
-    display: flex;
-  
+    margin-top:10em;
+    display: flex;  
+  }
+  .logo-type img {
+    width: 50px;
   }
   .logo-type a{
     margin-left: 1em;

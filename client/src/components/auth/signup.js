@@ -10,8 +10,7 @@ class Signup extends Component {
         this.state = { 
             username: '', 
             password: '',
-            usernameCheck: true,
-            passwordCheck: true
+            error: false
         }
         this.services = new AuthServices()
     }
@@ -27,24 +26,27 @@ class Signup extends Component {
 
         e.preventDefault()
         const { username, password } = this.state
-        if (!this.state.username || !this.state.password) {
-            if (!this.state.username) this.setState({usernameCheck: false})
-            if (!this.state.password) this.setState({passwordCheck: false})
-            return null
-        }
         this.services.signup(username, password)
             .then(response => {
                 this.setState({ username: '', password: '' })
                 this.props.setTheUser(response)
+                window.location.href = `/map`;
+
             })
-            .catch(error => console.log(error.response.data.message))
-            window.location.href = `/map`
+            .catch(error => {
+                console.log("**** Error de signup", error.response.data.message)
+                this.setState({error: error.response.data.message})
+            })
     }
 
     validation() {
-        if (!this.state.passwordCheck) return "form-control form-control-red"
-        if (!this.state.usernameCheck) return "form-control form-control-red"
-        return "form-control"
+        console.log(this.state.error)
+        if (this.state.error !== false) return (
+            
+            <div className="alert alert-warning">
+                <p>{this.state.error}</p>
+            </div>
+        )
     }
 
     render() {
@@ -60,6 +62,7 @@ class Signup extends Component {
                                 <input onChange={this.handleChange} value={this.state.password} type="password" className={this.validation()} id="password" name="password" placeholder="Password" />
                             </div>
                             <button type="submit" className="signup-link">Sign Up</button>
+                            {this.validation()}
                         </form>
                     </div>
             </div>

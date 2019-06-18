@@ -98,12 +98,25 @@ class CreateRoom extends Component {
     }));
   };
 
+  getHashTags(inputText) {  
+    let regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
+    let matches = [];
+    let match;
+
+    while ((match = regex.exec(inputText))) {
+        matches.push(match[1]);
+    }
+    console.log(matches)
+  }
+
   handleSubmit = e => {
     e.preventDefault();
-    this.services.postRoom(this.state.room).then(room => {
-      console.log(room);
-      window.location.href = `/room/${room._id}`;
-    });
+    let tags = this.state.room.tags
+    this.getHashTags(tags)
+    // this.services.postRoom(this.state.room).then(room => {
+    //   console.log(room);
+    //   window.location.href = `/room/${room._id}`;
+    // });
   };
 
   render() {

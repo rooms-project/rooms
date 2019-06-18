@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import AuthServices from '../service/auth-services'
 import SearchBar from './searchBar/searchBar'
-
+import logoShort from "./logo/rooms-r-white.svg";
 
 class navigation extends Component {
 
@@ -26,10 +26,9 @@ class navigation extends Component {
               <div className="header-absolute">
 
                 <div className="header">
-                    <div className="logo-type">
-                        <Link to='/map'><FontAwesomeIcon className="logo" icon="person-booth" /></Link>
-                        <Link to='/map'><h3>ROOMS</h3></Link>
-                    </div>
+                
+                        <img src={logoShort} alt="rooms"/>
+         
                     <ul>
                     <li><p>Hi {this.props.userInSession.username}!</p></li>             
                     {/* <li><SearchBar/></li>              */}
@@ -46,10 +45,9 @@ class navigation extends Component {
               <div className="header-absolute">
 
                 <div className="header">
-                    <div className="logo-type">
-                        <Link to='/map'><FontAwesomeIcon className="logo" icon="person-booth" /></Link>
-                        <Link to='/map'><h3>ROOMS</h3></Link>
-                    </div>
+             
+                        <img src={logoShort} alt="rooms"/>
+           
                     <ul>
                     {/* <li><SearchBar search=""/></li>        */}
                     <li><Link to='/signup'>Sign Up</Link></li>

@@ -19,6 +19,14 @@ export default class services {
             .then(res => res.data)
             .catch(err => console.log('Error', err))
     }
+    
+    updateFollowing = (roomId,userId,action) => {
+        // console.log(roomId,userId,action)
+        console.log("0000000000000000000000000000000000000000000000000000000000000 ")
+        return this.service.put("updateFollowing", {roomId,userId,action})
+        .then(res => console.log("THEN---------------------------------------------------------"))
+        .catch(()=> console.log("111111111111111111111111111111111111111111111111111111"))
+    }
 
     postUser = user => {
         return this.service.post('newUser', user, { withCredentials: true })
@@ -31,4 +39,5 @@ export default class services {
             .then(res => res.data)
             .catch(err => console.log('Error', err))
     }
+
 }

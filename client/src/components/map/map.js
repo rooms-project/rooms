@@ -30,19 +30,24 @@ export class MapContainer extends Component {
   
 
   componentDidMount() {
+    this.update()
+      // .catch(err => console.log(err));
+  }
+  update = () => {
+    console.log("1234567891234567890912345678901234567890")
     this.services
       .getAllRooms()
       .then(allRooms => this.setState({ Rooms: allRooms }))
       .then(() => this.setState({ filteredRooms: this.state.Rooms }))
-      .catch(err => console.log(err));
   }
 
   getUserRoom() {
+    // console.log(this.props.userInSession.room[0])
     return this.props.userInSession.room[0];
   }
 
   hideWindow() {
-    console.log("hola hola hola");
+    // console.log("hola hola hola");
     this.setState({ showingInfoWindow: false });
   }
 
@@ -57,11 +62,12 @@ export class MapContainer extends Component {
       fillOpacity: 0.8,
       strokeWeight: 2
     };
-
+    // console.log(this.state.filteredRooms)
     return this.state.filteredRooms.map(room => {
       if (!room.location) {
         return null;
       }
+      // console.log(room._id)
       return (
         <Marker
           key={room._id}
@@ -77,6 +83,8 @@ export class MapContainer extends Component {
       );
     });
   };
+
+
 
   displayButton = () => {
     if (!this.props.userInSession)
@@ -113,9 +121,10 @@ export class MapContainer extends Component {
   };
 
   onMarkerClick = (props, marker, e) => {
+    console.log(props, marker, e)
     this.userServices.getOneUser(props.room.owner).then(owner => {
       this.setState({
-        selectedRoom: props.room,
+        selectedRoom: props.room, 
         activeMarker: marker,
         selectedRoomOwner: owner.username,
         showingInfoWindow: true,
@@ -125,7 +134,8 @@ export class MapContainer extends Component {
   };
 
   checkUser = () => {
-    console.log(this.props);
+    // console.log(this.props);
+    this.setState({})
   };
 
   checkRooms = () => {
@@ -133,13 +143,13 @@ export class MapContainer extends Component {
   };
 
   search = search => {
-    console.log("State en searchbar", this.state);
+    // console.log("State en searchbar", this.state);
     let filteredRooms = [...this.state.Rooms];
     filteredRooms = filteredRooms.filter(room =>
       room.roomname.toLowerCase().includes(search.toLowerCase())
     );
     this.setState({ filteredRooms });
-    console.log(filteredRooms);
+    // console.log(filteredRooms);
   };
 
   onClose = () => {
@@ -152,6 +162,7 @@ export class MapContainer extends Component {
         selectedRoomOwner: ""
       });
     }
+    // console.log(this.state.selectedRoom)
   };
 
   render() {
@@ -171,6 +182,7 @@ export class MapContainer extends Component {
             className="info-window-main"
           >
             <InfoWindowContent
+              update={this.update}
               state={this.state}
               user={this.props.userInSession}
               search={this.search}

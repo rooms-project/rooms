@@ -9,11 +9,25 @@ import { faTags } from "@fortawesome/free-solid-svg-icons";
 
 class InfoWindowContent extends Component {
   constructor(props) {
+    console.log("Patata")
     super(props);
-    this.state = props.state;
+    this.state = {
+      selectedRoom: this.props.state.selectedRoom
+    }
     this.roomServices = new RoomService();
     this.userServices = new userServices();
   }
+
+  // componentDidMount() {
+  //   console.log("PROPS", this.props.state.selectedRoom.followers)
+  //   console.log("MOOOOUNT ANTES", this.state.selectedRoom.followers)
+  //   this.setState({selectedRoom: {
+  //     ...this.state.selectedRoom,
+  //     followers: this.props.state.selectedRoom.followers
+  //     }
+  //   })
+  // }
+
 
   handleSearch = tag => {
     //Está buscando pero hay que mejorar la forma de búsqueda
@@ -26,10 +40,9 @@ class InfoWindowContent extends Component {
   };
 
   getTags = () => {
-    if (!this.state.selectedRoom) return null;
-    console.log(this.state.selectedRoom.tags);
-    if (!this.state.selectedRoom.tags) return "The room has no tags";
-    return this.state.selectedRoom.tags.map(tag =>
+    if (!this.props.state.selectedRoom) return null;
+    if (!this.props.state.selectedRoom.tags) return "The room has no tags";
+    return this.props.state.selectedRoom.tags.map(tag =>
       tag[0] === "#" ? (
         <button
           key="0"
@@ -46,13 +59,6 @@ class InfoWindowContent extends Component {
         >{`#${tag} `}</button>
       )
     );
-  };
-
-  getFollowers = () => {
-    if (!this.state.selectedRoom) return null;
-    console.log(this.state.selectedRoom.followers);
-    if (!this.state.selectedRoom.followers) return 0;
-    return this.state.selectedRoom.followers.length;
   };
 
   setFollowButton = () => {
@@ -77,44 +83,71 @@ class InfoWindowContent extends Component {
   };
 
   unfollowRoom = () => {
-    this.state.selectedRoom.followers.splice(
-      this.state.selectedRoom.followers.indexOf(`${this.props.user._id}`),
-      1
-    );
-    this.props.user.following.splice(
-      this.props.user.following.indexOf(`${this.state.selectedRoom._id}`),
-      1
-    );
-    this.setState({
-      ...this.state,
-      selectedRoom: {
-        ...this.state.selectedRoom,
-        followers: this.state.selectedRoom.followers
-      }
-    });
+    
+    let newFollowers = []
 
-    console.log(this.state.selectedRoom.followers);
-    console.log(this.props.user.following);
+    if(this.props.state.selectedRoom.followers) {
+      newFollowers = [...this.state.selectedRoom.followers]
+      newFollowers.splice(
+        this.state.selectedRoom.followers.indexOf(this.props.user._id),
+        1
+      );
+    }
+   
+    this.props.user.following.splice(
+      this.props.user.following.indexOf(this.props.state.selectedRoom._id),
+      1
+    );
+    // this.setState({
+    //     selectedRoom: {
+    //       ...this.state.selectedRoom,
+    //       followers: newFollowers
+    //     }
+    // },console.log(this.state.selectedRoom));
+    this.props.state.selectedRoom.followers.pop()
+
+    this.userServices.updateFollowing(this.state.selectedRoom._id, this.props.user._id, "unfollow")
+    .then(()=> console.log("------------------------------------unfollow------------------------------"))
+    this.props.update()
   };
 
   followRoom = () => {
     //Falta actualizar en el back y logica para evitar que se pueda seguir pusheando si ya has pusheado
-    if (!this.props.user) window.location.href = `/login`;
-    this.state.selectedRoom.followers.push(`${this.props.user._id}`);
-    this.props.user.following.push(`${this.state.selectedRoom._id}`);
+    // if (!this.props.user) window.location.href = `/login`;
 
+    let newFollowers = []
+    if(this.props.state.selectedRoom.followers && this.props.state.selectedRoom.followers.length) {
+
+      newFollowers = [...this.state.selectedRoom.followers]
+      newFollowers.push(this.props.user._id)
+      console.log("NEWWWW", newFollowers)
+
+
+    } else {
+      newFollowers.push(this.props.user._id)
+    }
+    console.log("NEWWWW", newFollowers)
+
+    console.log(this.state.selectedRoom.followers)
+  //   this.setState({
+  //     selectedRoom: {
+  //       ...this.state.selectedRoom,
+  //       followers: newFollowers
+  //     }
+  // }, )
+  console.log(this.state.selectedRoom)
+    
+    this.props.user.following.push(this.state.selectedRoom._id)
+    this.props.state.selectedRoom.followers.push("engaño")
     //Poner aquí actualización del back this.roomservice + this.userservice...
-    this.setState({
-      ...this.state,
-      selectedRoom: {
-        ...this.state.selectedRoom,
-        followers: this.state.selectedRoom.followers
-      }
-    });
+    this.userServices.updateFollowing(this.state.selectedRoom._id,this.props.user._id, "follow")
+    .then(()=> console.log("------------------------------------follow------------------------------"))
+    .catch(()=> console.log("-------------------------------------------CATCH----------------------------"))
+    this.props.update()
+
   };
 
   enterRoom = () => {
-    console.log(this.state.selectedRoom);
     window.location.href = `/room/${this.state.selectedRoom._id}`;
   };
 
@@ -123,8 +156,8 @@ class InfoWindowContent extends Component {
       <div className="info-window">
         <div className="info-window-img">
           <img
-            src={this.state.selectedRoom.imageUrl}
-            alt={this.state.selectedRoom.roomname}
+            src={this.props.state.selectedRoom.imageUrl}
+            alt={this.props.state.selectedRoom.roomname}
           />
         </div>
         <div className="info-window-content">
@@ -132,14 +165,14 @@ class InfoWindowContent extends Component {
             <li>
               <FontAwesomeIcon className="icon-home" icon={faHome} />
               <span className="roomname">
-                {this.state.selectedRoom.roomname}
+                {this.props.state.selectedRoom.roomname}
               </span>
               <FontAwesomeIcon className="icon-user" icon="user" />
-              <span className="owner">{this.state.selectedRoomOwner}</span>
+              <span className="owner">{this.props.state.selectedRoomOwner}</span>
             </li>
             <li>
               <FontAwesomeIcon className="icon" icon={faStickyNote} />
-              <span>{this.state.selectedRoom.description}</span>
+              <span>{this.props.state.selectedRoom.description}</span>
             </li>
             <li>
               <FontAwesomeIcon className="icon" icon={faTags} />
@@ -147,7 +180,8 @@ class InfoWindowContent extends Component {
             </li>
             <li>
               <FontAwesomeIcon className="icon" icon={faUsers} />
-              <span>{this.getFollowers()} followers</span>
+              {console.log(this.state.selectedRoom.followers)}
+              <span>{this.props.state.selectedRoom.followers ? this.props.state.selectedRoom.followers.length : "0"} followers</span>
             </li>
           </ul>
           <button
@@ -162,7 +196,7 @@ class InfoWindowContent extends Component {
 
           <button
             className="info-window-btn"
-            dir={"/room/" + this.state.selectedRoom.id}
+            dir={"/room/" + this.props.state.selectedRoom.id}
           >
             Like
           </button>
