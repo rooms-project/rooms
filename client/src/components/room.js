@@ -48,31 +48,33 @@ class Room extends Component {
                     <Streaming/>
                     </div>
                         <div className="box"> 
-                            <div className="room-card-container">
+                
 
-                                    <h1 className="roomname">{this.state.room.roomname}</h1>
+                                    <div className="title-wrapper">
+                                        <h1 className="roomname">{this.state.room.roomname}</h1>
+                                        <h5>{this.state.room.description}</h5>
+                                        <div className="followers-streams">
+                                            <p>{this.state.room.tags}</p>
+                                            <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username !== undefined ? this.state.user.username : null}</p> 
+                                            <p className="margin-left">Followers: {this.state.room.followers === []? this.state.room.followers : "0"}</p>
+                                            {/* <p class="margin-left">Streams: {this.state.room.streams ? this.state.room.streams : "0"}</p> */}
+                                        </div>
+                                    </div>
+                                    <div className='room-button-container'>
+                                        <button className='button-follow margin-bottom'>Follow</button>
+                                        {/* <button className='button-like'><FontAwesomeIcon  icon="heart"  className="like-button"/></button> */}
+                                    </div>
 
-                                <div className="room-header">
+
+                                {/* <div className="room-header">
 
                                     <div className='room-icons'>
-                                        <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username !== undefined ? this.state.user.username : null}</p> 
                                         <p><FontAwesomeIcon  icon="heart"  className="like-button"/> {this.state.room.likes ? this.state.room.likes : "0"}</p>
                                         <p><FontAwesomeIcon  icon="eye"  className="like-button"/> {this.state.room.views ? this.state.room.views : "0"}</p>
                                     </div>
-                                    <div className='room-button-container'>
-                                        <button className='button-follow'>Follow</button>
-                                        <button className='button-like'><FontAwesomeIcon  icon="heart"  className="like-button"/></button>
-                                    </div>
 
-                                </div>
-                            </div>
-
-                        <p>{this.state.room.description}</p>
-                        <p>{this.state.room.tags}</p>
-                        <div className="followers-streams">
-                        <p>Followers: {this.state.room.followers === []? this.state.room.followers : "0"}</p>
-                        <p>Streams: {this.state.room.streams ? this.state.room.streams : "0"}</p>
-                        </div>
+                                </div> */}
+                       
 
                         </div>
 

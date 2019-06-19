@@ -39,6 +39,11 @@ class Index extends Component {
               It’s a social media streaming platform that shares your room with
               the world…
             </p>
+          <div className="see-rooms">
+          <Link className="button-search" to="/map">
+              See Rooms
+          </Link>
+          </div>
           </div>
 
           {/* Botón de search */}
@@ -50,11 +55,6 @@ class Index extends Component {
 
 
         {/* Boton See Rooms */}
-        <div className="see-rooms">
-        <Link className="button-search" to="/map">
-            See Rooms
-        </Link>
-        </div>
           
         {/* Botón login */}
           {/* <div className="login"> */}            

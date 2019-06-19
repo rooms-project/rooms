@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../../node_modules/video-react/dist/video-react.css"
-import "./player.css"
+
 import { Player, BigPlayButton } from 'video-react';
 
 
@@ -15,7 +15,7 @@ class Streaming extends Component {
   render() {
 
     return (
-      <div>
+
         <div className="player">
           <Player
           playsInline
@@ -24,8 +24,8 @@ class Streaming extends Component {
           >
           <BigPlayButton position="center"/>
           </Player>
-      </div> 
-      </div>
+        </div> 
+
     );
   }
 }

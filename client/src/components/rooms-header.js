@@ -27,13 +27,13 @@ class navigation extends Component {
 
                 <div className="header">
                 
-                <Link to="/map"><img src={logoShort} alt="rooms"/></Link>
+                <Link className="logo" to="/map"><img src={logoShort} alt="rooms"/></Link>
          
                     <ul>
-                    <li><p>Hi {this.props.userInSession.username}!</p></li>             
+                    <li id="user-name">Hi {this.props.userInSession.username}!</li>             
                     {/* <li><SearchBar/></li>              */}
                     <li><Link to={`/profile/${this.props.userInSession._id}`}>Your Profile</Link></li>
-                    <li> <Link to='' ><div onClick={this.logout}>Sign Out</div></Link></li>
+                    <li> <Link to='' ><span onClick={this.logout}>Sign Out</span></Link></li>
                     </ul>
                 </div>
       

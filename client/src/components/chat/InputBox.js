@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import styled from "@emotion/styled";
 
 const Input = styled.input`
-  width: 80%;
+  width: 79%;
   padding: 5px;
   font-size: 20px;
   box-sizing: border-box;
   border: 0;
   border-radius:13px;
+  margin-left: 28px;
   @media (max-width: 400px) {  
     width: 207px;
     }
@@ -20,7 +21,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.a`
-  width: 20%;
+  width: 15%;
   padding: 5px;
   font-size: 20px;
   box-sizing: border-box;
