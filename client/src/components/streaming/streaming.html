@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <title>Player</title>
+   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+ </head>
+ <body>
+   <video id="videoPlayer" controls muted></video>
+   <script>
+     var video = document.getElementById("videoPlayer");
+     
+     if (Hls.isSupported()) {
+       var hls = new Hls();
+       hls.attachMedia(video);
+       hls.on(Hls.Events.MEDIA_ATTACHED, function() {
+         hls.loadSource("http://master.faable.com:31789/hls/marc.m3u8");
+         hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
+           video.play();
+           console.log(
+             `Stream is playing, found ${data.levels.length} quality level`
+           );
+         });
+       });
+     }
+   </script>
+ </body>
+</html>

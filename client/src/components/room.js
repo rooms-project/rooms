@@ -31,6 +31,7 @@ class Room extends Component {
             .catch(error => console.log(error))
     }
     render() {
+        console.log(this.state.room._id)
         return (
             <div className="room">
                 
@@ -45,7 +46,7 @@ class Room extends Component {
                     Your browser does not support the video tag.
                     </video> */}
                     {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/uTnFrh6CyK4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
-                    <Streaming/>
+                    <Streaming id={this.state.room._id}/>
                     </div>
                         <div className="box"> 
                 
