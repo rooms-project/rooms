@@ -6,6 +6,8 @@ import './box/box.css'
 import './room/room.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Chat } from "./chat/Chat";
+import Streaming from "./streaming/Streaming"
+
 class Room extends Component {
     constructor(props) {
         super(props)
@@ -42,7 +44,8 @@ class Room extends Component {
                         >
                     Your browser does not support the video tag.
                     </video> */}
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/uTnFrh6CyK4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/uTnFrh6CyK4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+                    <Streaming/>
                     </div>
                         <div className="box"> 
                             <div className="room-card-container">

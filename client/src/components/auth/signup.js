@@ -56,10 +56,10 @@ class Signup extends Component {
                         <h1>Sign Up</h1>
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
-                                <input onChange={this.handleChange} value={this.state.username} type="text" className={this.validation()} id="username" name="username" placeholder="User Name"/>
+                                <input onChange={this.handleChange} value={this.state.username} type="text" id="username" name="username" placeholder="User Name"/>
                             </div>
                             <div className="form-group">
-                                <input onChange={this.handleChange} value={this.state.password} type="password" className={this.validation()} id="password" name="password" placeholder="Password" />
+                                <input onChange={this.handleChange} value={this.state.password} type="password" id="password" name="password" placeholder="Password" />
                             </div>
                             <button type="submit" className="signup-link">Sign Up</button>
                             {this.validation()}

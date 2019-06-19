@@ -34,32 +34,42 @@ class Index extends Component {
         <div className="rooms-index">
           {/* <Header userInSession={this.state.loggedInUser} setUser={this.setUser}/> */}
           <div className="index-info">
-            <img src={logo} alt="rooms" />
+            <img src={logo} alt="rooms"/>
             <p>
               It’s a social media streaming platform that shares your room with
               the world…
             </p>
           </div>
 
-          <div className="search-container">
+          {/* Botón de search */}
+          {/* <div className="search-container">
             <Link to="/map" className="search glitch">
               <FontAwesomeIcon icon="search" />
             </Link>
-          </div>
+          </div> */}
 
-          <div className="login">
-            {console.log(
+
+        {/* Boton See Rooms */}
+        <div className="see-rooms">
+        <Link className="button-search" to="/map">
+            See Rooms
+        </Link>
+        </div>
+          
+        {/* Botón login */}
+          {/* <div className="login"> */}            
+            {/* {console.log(
               "este es el loggedinuser de index " + this.state.loggedInUser
             )}
             {this.props.userInSession ? null : (
               <Link className="button-login" to="/login">
                 Log In
               </Link>
-            )}
+            )} */}
             {/* <LoginForm setUser={this.props.setUser} setUserIndex={()=>this.setState({ loggedInUser:" userObj" })} displayInfo/>} */}
             {/* {this.props.userInSession ? null: <LoginForm setUser={this.props.setUser} displayInfo/>} */}
             {/* <button className='button-login' onClick={this.handleClick}>LOG IN</button> */}
-          </div>
+          {/* </div> */}
         </div>
       </div>
     );

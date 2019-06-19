@@ -27,7 +27,7 @@ class navigation extends Component {
 
                 <div className="header">
                 
-                        <img src={logoShort} alt="rooms"/>
+                <Link to="/map"><img src={logoShort} alt="rooms"/></Link>
          
                     <ul>
                     <li><p>Hi {this.props.userInSession.username}!</p></li>             
@@ -46,7 +46,7 @@ class navigation extends Component {
 
                 <div className="header">
              
-                        <img src={logoShort} alt="rooms"/>
+                        <Link to="/map"><img src={logoShort} alt="rooms"/></Link>
            
                     <ul>
                     {/* <li><SearchBar search=""/></li>        */}

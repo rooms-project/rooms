@@ -19,7 +19,7 @@ class CreateRoom extends Component {
           latitude: undefined,
           longitude: undefined
         },
-        tags: [],
+        tags: "",
         followers: [],
         owner: undefined
       },
@@ -28,6 +28,16 @@ class CreateRoom extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.services = new RoomServices();
   }
+
+  // getSomething = sth => this.state[sth]
+
+  // updateRoomId = newRoomId => {
+  //   this.setState((prevState, newRoom) => {
+  //     return {...prevState, 
+  //             room: {...newRoom,roomId: newRoomId}
+  //     }
+  //  });
+  // }
 
   componentDidMount() {
     this.currentLocation();
@@ -106,17 +116,31 @@ class CreateRoom extends Component {
     while ((match = regex.exec(inputText))) {
         matches.push(match[1]);
     }
-    console.log(matches)
+    return matches
   }
 
   handleSubmit = e => {
     e.preventDefault();
     let tags = this.state.room.tags
-    this.getHashTags(tags)
-    this.services.postRoom(this.state.room).then(room => {
-      console.log(room);
+    let newTags = this.getHashTags(tags)
+    console.log(newTags)
+    // this.setState(
+    //   {
+    //   ...this.state,
+    //   room: {
+    //       ...this.state.room,
+    //       tags: newTags,
+    //   }
+    //   })
+      const newRoom = {
+        ...this.state.room,
+        tags: newTags,
+      }
+
+    this.services.postRoom(newRoom).then(room => {
       window.location.href = `/room/${room._id}`;
     });
+    
   };
 
   render() {

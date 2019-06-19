@@ -31,7 +31,7 @@ class InfoWindowContent extends Component {
 
   handleSearch = tag => {
     //Está buscando pero hay que mejorar la forma de búsqueda
-    this.props.search(tag);
+    this.props.search(tag, true);
     this.handleWindow();
   };
 

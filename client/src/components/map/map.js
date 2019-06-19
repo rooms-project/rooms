@@ -63,7 +63,12 @@ export class MapContainer extends Component {
       strokeWeight: 2
     };
     // console.log(this.state.filteredRooms)
+    let followersArr = []
     return this.state.filteredRooms.map(room => {
+      console.log("********** FOLLOWERS", room.followers.length)
+      followersArr.push(room.followers.length)
+      console.log(followersArr)
+
       if (!room.location) {
         return null;
       }
@@ -142,14 +147,28 @@ export class MapContainer extends Component {
     return this.state.Rooms;
   };
 
-  search = search => {
-    // console.log("State en searchbar", this.state);
+  search = (search, tags) => {
+    if (tags) {
+      let filteredRooms = [...this.state.Rooms];
+      let filteredRoomsByTag = []
+      filteredRooms = filteredRooms.filter(room => {
+        room.tags.map(tag => {
+          if (tag.toLowerCase().includes(search.toLowerCase())) { 
+            filteredRoomsByTag.push(room)
+          } else return null
+        })
+        this.setState({ filteredRooms: filteredRoomsByTag });
+      })        
+    }
+    else {
+      // console.log("State en searchbar", this.state);
     let filteredRooms = [...this.state.Rooms];
     filteredRooms = filteredRooms.filter(room =>
       room.roomname.toLowerCase().includes(search.toLowerCase())
     );
     this.setState({ filteredRooms });
     // console.log(filteredRooms);
+    }    
   };
 
   onClose = () => {
@@ -181,13 +200,22 @@ export class MapContainer extends Component {
             onClose={this.onClose}
             className="info-window-main"
           >
-            <InfoWindowContent
+            {/* <InfoWindowContent
               update={this.update}
               state={this.state}
               user={this.props.userInSession}
               search={this.search}
               onClose={this.onClose}
-            />
+            /> */}
+            <div className="info-window">
+              <div className="info-window-img">
+              <img
+              src={this.state.selectedRoom.imageUrl}
+              alt={this.state.selectedRoom.roomname}
+              />
+              </div>
+              <span>{this.state.selectedRoom.followers ? this.state.selectedRoom.followers.length : "0"} followers</span>
+            </div>
           </InfoWindowEx>
         </CurrentLocation>
         <div className="map-menu">

@@ -13,6 +13,7 @@ import Map from './components/map/map'
 import CreateRoom from './components/rooms-create-form'
 import Hamburguer from './components/hamburger/rooms-hamburger'
 import { Chat } from "./components/chat/Chat";
+import Streaming from "./components/streaming/Streaming"
 /// Ben Components 
 /// Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -51,6 +52,8 @@ class App extends Component {
       <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />    
       <Route path="/create" render={()=> <CreateRoom userInSession={this.state.loggedInUser} setUser={this.setUser} />} />    
       <Route path="/chat" userInSession={this.state.loggedInUser} component={Chat} />
+      <Route path="/streaming" userInSession={this.state.loggedInUser} component={Streaming} />
+
       {/* <Route path="/map" component={Map} user={this.state.loggedInUser} setTheUser={this.setUser} /> */}
      </Switch>
     </div>
@@ -71,7 +74,9 @@ class App extends Component {
       <Route path="/room/:id" component={Room} />
       <Route path="/chat" userInSession={this.state.loggedInUser} component={Chat} />
       <Route path="/signup" render={() => <Signup setTheUser={this.setUser} />} />
-      <Route path="/login" render={() => <Login setTheUser={this.setUser} />} /> 
+      <Route path="/login" render={() => <Login setTheUser={this.setUser} />} />
+      <Route path="/streaming" userInSession={this.state.loggedInUser} component={Streaming} />
+ 
       {/* <Route path="/login" render={() => <Login setTheUser={this.setUser} />} /> */}
      </Switch>
     </div>

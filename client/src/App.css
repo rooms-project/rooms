@@ -7,12 +7,15 @@ width: 100%
 
 .header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   z-index: 1000;
+  height: 90px;
 }
 
 .header ul {
-  display: flex;  
+  display: flex; 
+  align-items: center; 
   color: white;
 }
 
@@ -26,10 +29,15 @@ width: 100%
 .header ul li a{
   text-decoration: none;
   color: white;
+  padding: 15px 20px;
+}
+.header ul li a:hover{
+  border-bottom: 2px solid white;
 }
 .header img {
-  width: 100px;
-  margin-left: 3%;
+  width: 65px;
+  margin-left: 25px;
+
 }
 
 .logo-type {
@@ -109,6 +117,24 @@ margin-left: 1em;
   text-align: center;
 
 }
+.rooms-index .button-search {
+  color: white;
+  margin-bottom: 4.8em;
+  border-radius:25px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  width:12em;
+  font-size: 0.8em;
+  padding: 6px;
+  border: 3px solid white;
+  background-color: transparent;
+  letter-spacing: 2px;
+}
+.rooms-index .see-rooms {
+  display: flex;
+  justify-content: center;
+}
 
 .rooms-index .login {
   display: flex;
@@ -132,19 +158,20 @@ margin-left: 1em;
   
 }
 .index-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   font-family: helvetica;
-  margin-top:18em;
-  margin-left:10%;
   color: white;
+  margin: 0 auto;
+  text-align: center;
+  width: 60%;
 }
-.index-info h3 {
-  font-weight: bolder;
-  font-size: 4em;
-}
+
 .index-info p {
   font-weight: bolder;
   font-size: 2em;
-  width: 50%;
   letter-spacing: 3px;
 }
 
