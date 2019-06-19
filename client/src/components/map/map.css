@@ -134,6 +134,8 @@
   letter-spacing: 2px;
   text-decoration: none;
   padding: 6px;
+  
+  
 }
 .map-buttons:hover {
   text-decoration: underline;
