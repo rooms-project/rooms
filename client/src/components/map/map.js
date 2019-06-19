@@ -11,6 +11,14 @@ import MapSearchBar from "../searchBar/map-searchBar";
 import InfoWindowEx from "./InfoWindowEx";
 import InfoWindowContent from "./InfoWindowContent";
 
+//Icons
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faStickyNote } from "@fortawesome/free-solid-svg-icons";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faTags } from "@fortawesome/free-solid-svg-icons";
+//
+
+
 export class MapContainer extends Component {
   constructor(props) {
     super(props);
@@ -25,16 +33,12 @@ export class MapContainer extends Component {
     };
     this.services = new RoomService();
     this.userServices = new userServices();
-  }
-
-  
+  }  
 
   componentDidMount() {
     this.update()
-      // .catch(err => console.log(err));
   }
   update = () => {
-    console.log("1234567891234567890912345678901234567890")
     this.services
       .getAllRooms()
       .then(allRooms => this.setState({ Rooms: allRooms }))
@@ -42,32 +46,38 @@ export class MapContainer extends Component {
   }
 
   getUserRoom() {
-    // console.log(this.props.userInSession.room[0])
     return this.props.userInSession.room[0];
   }
 
   hideWindow() {
-    // console.log("hola hola hola");
     this.setState({ showingInfoWindow: false });
   }
 
   displayMarkers = () => {
     const { google } = this.props;
-    const icon = {
-      path: google.maps.SymbolPath.CIRCLE,
-      scale: 7,
-      fillColor: "tomato",
-      strokeColor: "tomato",
-      fill: "tomato",
-      fillOpacity: 0.8,
-      strokeWeight: 2
-    };
+    
     // console.log(this.state.filteredRooms)
     let followersArr = []
     return this.state.filteredRooms.map(room => {
-      console.log("********** FOLLOWERS", room.followers.length)
+      let icon = {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 7,
+        fillColor: "tomato",
+        // strokeColor: "tomato",
+        fill: "tomato",
+        fillOpacity: 1,
+        strokeWeight: 0
+      };
       followersArr.push(room.followers.length)
-      console.log(followersArr)
+      let maxFollowers = Math.max.apply(null, followersArr)
+
+      let followersRatio
+      room.followers.length ? followersRatio = room.followers.length / maxFollowers : followersRatio = 0
+      if (followersRatio === 1) { icon.fillColor = "#ff4800"; console.log("MAXIMO", ) }
+      if (followersRatio >= 0.8 && followersRatio < 1 ) { icon.fillColor = "black" }
+      if (followersRatio >= 0.6 && followersRatio < 0.8 ) { icon.fillColor = "black" }
+      if (followersRatio >= 0.4 && followersRatio < 0.6 ) { icon.fillColor = "white" }
+      if (followersRatio < 0.4) { icon.fillColor = "white" }
 
       if (!room.location) {
         return null;
@@ -88,8 +98,6 @@ export class MapContainer extends Component {
       );
     });
   };
-
-
 
   displayButton = () => {
     if (!this.props.userInSession)
@@ -120,13 +128,13 @@ export class MapContainer extends Component {
     const random =
       Math.floor(Math.random() * (this.state.Rooms.length - 0)) + 0;
     const randomRoom = this.state.Rooms[random];
+    this.onClose()
     this.setState({
       selectedRoom: randomRoom
     });
   };
 
   onMarkerClick = (props, marker, e) => {
-    console.log(props, marker, e)
     this.userServices.getOneUser(props.room.owner).then(owner => {
       this.setState({
         selectedRoom: props.room, 
@@ -136,15 +144,6 @@ export class MapContainer extends Component {
         displayViewButton: true
       });
     });
-  };
-
-  checkUser = () => {
-    // console.log(this.props);
-    this.setState({})
-  };
-
-  checkRooms = () => {
-    return this.state.Rooms;
   };
 
   search = (search, tags) => {
@@ -161,13 +160,11 @@ export class MapContainer extends Component {
       })        
     }
     else {
-      // console.log("State en searchbar", this.state);
     let filteredRooms = [...this.state.Rooms];
     filteredRooms = filteredRooms.filter(room =>
       room.roomname.toLowerCase().includes(search.toLowerCase())
     );
     this.setState({ filteredRooms });
-    // console.log(filteredRooms);
     }    
   };
 
@@ -181,9 +178,95 @@ export class MapContainer extends Component {
         selectedRoomOwner: ""
       });
     }
-    // console.log(this.state.selectedRoom)
   };
 
+  // InfoWindowContent functions
+
+  // Enter room
+
+  enterRoom = () => {
+    window.location.href = `/room/${this.state.selectedRoom._id}`;
+  };
+
+  // HandleSearch
+
+  handleSearch = tag => {
+    this.search(tag, true);
+    this.onClose();
+  };
+
+  // Get tags
+
+  getTags = () => {
+    if (!this.state.selectedRoom) return null;
+    if (!this.state.selectedRoom.tags) return "The room has no tags";
+    return this.state.selectedRoom.tags.map(tag =>
+      tag[0] === "#" ? (
+        <button
+          key="0"
+          className="info-window-tag"
+          onClick={() => this.handleSearch(tag)}
+        >
+          {tag}
+        </button>
+      ) : (
+        <button
+          key="1"
+          className="info-window-tag"
+          onClick={() => this.handleSearch(tag)}
+        >{`#${tag} `}</button>
+      )
+    );
+  };
+
+  // Follow buttons
+
+  setFollowButton = () => {
+    //Lógica follow/unfollow
+    if (!this.props.userInSession) return null;
+    if (this.props.userInSession.following.includes(this.state.selectedRoom._id)) {
+      return (
+        <button className="info-window-btn" onClick={() => this.unfollowRoom()}>
+          Unfollow
+        </button>
+      );
+    } else {
+      return (
+        <button
+          className="info-window-btn info-window-following"
+          onClick={() => this.followRoom()}
+        >
+          Follow
+        </button>
+      );
+    }
+  };
+
+  followRoom = () => {
+      
+      this.state.selectedRoom.followers.push(this.props.userInSession._id)
+      this.props.userInSession.following.push(this.state.selectedRoom._id)
+
+      this.userServices.updateFollowing(this.state.selectedRoom._id,this.props.userInSession._id, "follow")
+        .then(()=> console.log("------------------------------------follow------------------------------"))
+        .catch(()=> console.log("-------------------------------------------CATCH----------------------------"))
+      this.update()
+  };
+
+  unfollowRoom = () => {
+
+    this.state.selectedRoom.followers.splice(
+      this.state.selectedRoom.followers.indexOf(this.props.userInSession._id), 1);
+    this.props.userInSession.following.splice(
+      this.props.userInSession.following.indexOf(this.state.selectedRoom._id), 1);
+
+    this.userServices.updateFollowing(this.state.selectedRoom._id, this.props.userInSession._id, "unfollow")
+    .then(()=> console.log("------------------------------------unfollow------------------------------"))
+    .catch(()=> console.log("-------------------------------------------CATCH----------------------------"))
+    this.update()
+  };
+
+  //
   render() {
     return (
       <div className="map-container">
@@ -200,22 +283,42 @@ export class MapContainer extends Component {
             onClose={this.onClose}
             className="info-window-main"
           >
-            {/* <InfoWindowContent
-              update={this.update}
-              state={this.state}
-              user={this.props.userInSession}
-              search={this.search}
-              onClose={this.onClose}
-            /> */}
             <div className="info-window">
-              <div className="info-window-img">
-              <img
-              src={this.state.selectedRoom.imageUrl}
-              alt={this.state.selectedRoom.roomname}
-              />
-              </div>
-              <span>{this.state.selectedRoom.followers ? this.state.selectedRoom.followers.length : "0"} followers</span>
-            </div>
+                    <div className="info-window-img">
+                      <img
+                        src={this.state.selectedRoom.imageUrl}
+                        alt={this.state.selectedRoom.roomname}
+                      />
+                    </div>
+                    <div className="info-window-content">
+                      <ul>
+                        <li>
+                          <FontAwesomeIcon className="icon-home" icon={faHome}/>
+                          <span className="roomname">
+                            {this.state.selectedRoom.roomname}
+                          </span>
+                          <FontAwesomeIcon className="icon-user" icon="user" />
+                          <span className="owner">{this.state.selectedRoomOwner}</span>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon className="icon" icon={faStickyNote}/>
+                          <span>{this.state.selectedRoom.description}</span>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon className="icon" icon={faTags}/>
+                          <span>{this.getTags()}</span>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon className="icon" icon={faUsers}/>
+                          <span>{this.state.selectedRoom.followers ? this.state.selectedRoom.followers.length : "0"} followers</span>
+                        </li>
+                      </ul>
+                      <button type="button" className="info-window-btn" onClick={this.enterRoom}>
+                        Enter room
+                      </button>
+                      {this.setFollowButton()}
+                    </div>
+                  </div>
           </InfoWindowEx>
         </CurrentLocation>
         <div className="map-menu">
