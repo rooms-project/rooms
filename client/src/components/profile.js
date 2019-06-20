@@ -84,7 +84,7 @@ class Profile extends Component {
 
     displayFollowingRooms() { //Se debería hacer con .populate en el back pero ya se ha conseguido hacer así
         return this.state.following.map((room) => {
-            console.log(room)
+            if (!room) return null
             return ( //room.
                 <div className="following">
                 <div className="following-img">
