@@ -612,14 +612,33 @@ a:hover
 .following {
   display: flex;
   width: 100%;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  margin-bottom: 10px;
+  padding: 10px 0;
 }
 
+/* .following-img {
+  margin-left: 15px;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;  
+} */
+
 .following-img img {
-  width: 150px;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 25px;
 }
 
 .following-content ul {
+  margin: 0;
   padding: 0;
+  margin-bottom: 15px;
 }
 .following-content ul li {
   list-style: none;

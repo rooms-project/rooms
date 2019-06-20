@@ -64,11 +64,10 @@ class Profile extends Component {
        this.props.loggedInUser.room = []
    }
    getRoomHeader() {
-       console.log(this.props.loggedInUser.room)
         if(this.props.loggedInUser.room.length === 1) {
            return <p>Your room {this.state.room} <Link to={`/room/${this.props.loggedInUser.room[0]}`}>Go to your room</Link> <span onClick={() => this.deleteRoom(this.props.loggedInUser)}>Delete room</span></p>
         }
-        else return <Link to={"/create"}>Create room</Link>
+        else return <Link to={"/create"} className="profile-create-btn">Create room</Link>
     }
 
     getFollowingRooms() {
@@ -83,10 +82,10 @@ class Profile extends Component {
     }
 
     displayFollowingRooms() { //Se debería hacer con .populate en el back pero ya se ha conseguido hacer así
-        return this.state.following.map((room) => {
+        return this.state.following.map((room, index) => {
             if (!room) return null
             return ( //room.
-                <div className="following">
+                <div key={index} className="following">
                 <div className="following-img">
                   <img
                     src={room.imageUrl}
@@ -95,7 +94,7 @@ class Profile extends Component {
                 </div>
                 <div className="info-window-content following-content">
                   <ul>
-                    <li>
+                    <li key={`0-${room.id_}`} >
                       <FontAwesomeIcon className="icon-home" icon={faHome}/>
                       <span className="roomname">
                         {room.roomname}
@@ -103,7 +102,7 @@ class Profile extends Component {
                       <FontAwesomeIcon className="icon-user" icon="user" />
                       {/* <span className="owner">{room.selectedRoomOwner}</span> */}
                     </li>
-                    <li>
+                    <li key={`1-${room.id_}`}>
                       <FontAwesomeIcon className="icon" icon={faStickyNote}/>
                       <span>{room.description}</span>
                     </li>
@@ -116,9 +115,10 @@ class Profile extends Component {
                       <span>{this.state.selectedRoom.followers ? this.state.selectedRoom.followers.length : "0"} followers</span>
                     </li> */}
                   </ul>
-                  <button type="button" className="info-window-btn" onClick={this.enterRoom}>
+                  <Link to={`/room/${room._id}`} className="info-window-btn enter-btn">Enter room</Link>
+                  {/* <button type="button" className="info-window-btn" onClick={this.enterRoom}>
                     Enter room
-                  </button>
+                  </button> */}
                   {/* {this.setFollowButton()} */}
                 </div>
               </div>
@@ -141,7 +141,7 @@ class Profile extends Component {
 
 
 
-                           <div className="room-header">
+                           <div className="profile-header">
                                {this.getRoomHeader()}
                                 <div className='room-icons'>
                                    {/* <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username}</p>
@@ -162,8 +162,8 @@ class Profile extends Component {
 
 
 
-                           <div className="room-header">
-                               <p>Following:</p>
+                           <div className="profile-header">
+                               <p>Following</p>
                                {this.displayFollowingRooms()}
                            </div>
 

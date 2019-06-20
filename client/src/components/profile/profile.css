@@ -12,6 +12,34 @@
   height: 29px;
   width: 52px;
 }
+
+.profile-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  justify-content: center;  
+}
+.profile-header p {
+  margin-top: 15px;
+  font-size: 1.2em;
+  color: white; 
+}
+
+.profile-create-btn {
+  color: white;
+  border-radius:25px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  width:10em;
+  font-size: 1em;
+  padding: 6px;
+  border: 1px solid white;
+  background-color: transparent;
+  letter-spacing: 2px;
+}
+
 .profileHeader h1 {
   margin-left: 10px;
 }

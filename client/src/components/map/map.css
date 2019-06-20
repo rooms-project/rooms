@@ -2,6 +2,11 @@
   display: flex;
 }
 
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
 /* InfoWindow Classes */
 
 .info-window-main {
@@ -64,22 +69,17 @@
 }
 
 .info-window-btn {
-  height: 2;
   margin: 0 auto;
-  color: inherit;
-  border-radius: 13px;
-  margin-right: 10px;
+  margin-top: 15px;
   text-decoration: none;
-  font-size: 0.77em;
-  font-weight: bold;
-  border: 3px solid white;
+  font-size: .75em;
+  border: 2px solid white;
   background-color: transparent;
-  text-transform: uppercase;
   letter-spacing: 2px;
-  color: inherit;
-  border-radius: 13px;
-  text-decoration: none;
-  padding: 6px;
+  border-radius: 1500px;
+  color:white;
+  padding: 8px 25px;
+  margin-right: 10px;
 }
 .info-window-btn:focus {
   outline: none;
@@ -124,11 +124,11 @@
   margin: 0 auto;
   color: white;
   margin-bottom: 1.2em;
-  border-radius: 13px;
+  border-radius: 1000px;
   width: 19em;
   font-size: 0.77em;
   font-weight: bold;
-  border: 3px solid white;
+  border: 2px solid white;
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 2px;

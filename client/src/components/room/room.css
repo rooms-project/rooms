@@ -155,8 +155,9 @@ width: 100%;
 }
 
 .box-following {
+    padding: 0;
     overflow: auto;
-    height: 300px;
+    height: 350px;
 }
 /* MEDIAQUERIES */
 

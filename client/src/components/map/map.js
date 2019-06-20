@@ -202,10 +202,10 @@ export class MapContainer extends Component {
   getTags = () => {
     if (!this.state.selectedRoom) return null;
     if (!this.state.selectedRoom.tags) return "The room has no tags";
-    return this.state.selectedRoom.tags.map(tag =>
+    return this.state.selectedRoom.tags.map((tag, index) =>
       tag[0] === "#" ? (
         <button
-          key="0"
+          key={index}
           className="info-window-tag"
           onClick={() => this.handleSearch(tag)}
         >
@@ -213,7 +213,7 @@ export class MapContainer extends Component {
         </button>
       ) : (
         <button
-          key="1"
+          key={index}
           className="info-window-tag"
           onClick={() => this.handleSearch(tag)}
         >{`#${tag} `}</button>
