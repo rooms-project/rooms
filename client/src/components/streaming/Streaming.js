@@ -50,7 +50,7 @@ class Streaming extends Component {
           {/* <Player ref={(player) => { this.player = player }}>
           <source src="http://master.faable.com:31789/hls/marc.m3u8" />
           </Player> */}
-          <ReactHLS url={`http://master.faable.com:31789/hls/${this.props.id}.m3u8`} autoplay={true} />
+          <ReactHLS url={`http://master.faable.com:31789/hls/${this.props.id}.m3u8`} autoplay={true} muted />
 
 
         </div>

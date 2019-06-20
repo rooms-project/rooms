@@ -41,4 +41,11 @@ export default class services {
       .then(res => res.data)
       .catch(err => console.log(err));
   };
+  
+  deleteRoom = theRoom => {
+    return this.service
+      .delete(`/deleteRoom/${theRoom}`, { withCredentials: true })
+      .then(res => res.data)
+      .catch(err => console.log(err));
+  }
 }

@@ -33,7 +33,7 @@ export class MapContainer extends Component {
     };
     this.services = new RoomService();
     this.userServices = new userServices();
-  }  
+  }
 
   componentDidMount() {
     this.update()

@@ -43,4 +43,10 @@ router.put("/updateRoom/:id", (req, res, next) => {
     .catch(err => console.log(err));
 });
 
+router.delete("/deleteRoom/:id", (req, res) => {
+  Room.findByIdAndDelete(req.params.id)  
+    .then(data => res.json(data))
+    .catch(err => console.log("Error:", err));
+});
+
 module.exports = router;

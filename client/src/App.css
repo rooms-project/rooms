@@ -606,3 +606,26 @@ a:hover
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2c6675', endColorstr='#1c2c4d', GradientType=0 );
   padding: 0px, 0.15em;
 }
+
+.following {
+  display: flex;
+  width: 100%;
+}
+
+.following-img img {
+  width: 150px;
+}
+
+.following-content ul {
+  padding: 0;
+}
+.following-content ul li {
+  list-style: none;
+  margin: 0;
+}
+.following-content .icon-home {
+  margin-right: 15px;
+}
+.following-content .icon {
+  margin-right: 15px;
+}
