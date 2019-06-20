@@ -1,4 +1,21 @@
 /* ROOM */
+.room-name {
+  font-weight: 4em;
+}
+#img-room-container{
+  width:60px;
+  height:60px;
+  border-radius: 10000px;
+  overflow: hidden;
+  position: relative;
+}
+#img-room {
+  width:80px;
+  height:80px;
+ 
+
+
+}
 .room {
   height:100vh;
   display: flex;
@@ -37,16 +54,19 @@ width: 687px;
 width: 100%;
 }
 .followers-streams {
+  margin-left: 100px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .box {
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
   width: 1000px
 
 }
+
+
 .margin-left {
   margin-left: 15px;
 }
@@ -128,6 +148,9 @@ width: 100%;
   background-color: transparent;
   letter-spacing: 2px;
 }
+.margin-left{
+  margin-left: 1em;
+}
 
 .button-like {
   height: 33px;
@@ -208,6 +231,7 @@ width: 100%;
   .message-container{
     height: 200px
   }
+
   
 }
 

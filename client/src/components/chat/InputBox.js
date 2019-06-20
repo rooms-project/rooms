@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import styled from "@emotion/styled";
 
 const Input = styled.input`
-  width: 79%;
+  width: 78%;
   padding: 5px;
   font-size: 20px;
+  background: transparent;
   box-sizing: border-box;
   border: 0;
-  border-radius:13px;
+  color: white;
+  margin-bottom: 10px;
+  border-bottom:1px solid white;
   margin-left: 28px;
   @media (max-width: 400px) {  
     width: 207px;
@@ -21,17 +24,21 @@ const Input = styled.input`
 `;
 
 const Button = styled.a`
-  width: 15%;
-  padding: 5px;
-  font-size: 20px;
-  box-sizing: border-box;
-  display: inline-block;
-  text-align: center;
-  background: tomato;
-  color: white;
-  user-select: none;
-  cursor: pointer;
-  border-radius:13px;
+height: 2;
+color: inherit;
+margin-left: 1.2em;
+border-radius:13px;
+justify-content: center;
+text-decoration: none;
+width: 30px;
+font-size: 0.7em;
+font-weight: normal;
+padding: 10px;
+cursor: pointer
+background-color: transparent;
+text-transform: uppercase;
+letter-spacing: 2px;
+color: white;
 `;
 
 export class InputBox extends Component {

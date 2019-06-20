@@ -2,7 +2,9 @@
 #user-name {
   margin-right: 60px;
 }
-
+div.input-chat input:focus{
+ outline: none;
+}
 
 .header-absolute {
 position: absolute;
@@ -586,6 +588,7 @@ a:hover
   height: 100px;
   width: 100px;
   border-radius: 1000px;
+  object-fit: cover;
 }
 .profileHeader {
   display: flex;
@@ -650,3 +653,4 @@ a:hover
 .following-content .icon {
   margin-right: 15px;
 }
+
