@@ -52,15 +52,17 @@ class Room extends Component {
                 
 
                                     <div className="title-wrapper">
-                                        <h1 className="roomname">{this.state.room.roomname}</h1>
-                                        <h5>{this.state.room.description}</h5>
+                                        <h1 className="room-name">{this.state.room.roomname}</h1>
+                                        <p>{this.state.room.description}</p>
+                                    </div>
                                         <div className="followers-streams">
-                                            <p>{this.state.room.tags}</p>
+                                          {/* <div id="img-room-container"><img id="img-room" src={this.state.room.imageUrl} /></div>   */}
                                             <p><FontAwesomeIcon  icon="user"  className="profile-icon"/> {this.state.user.username !== undefined ? this.state.user.username : null}</p> 
-                                            <p className="margin-left">Followers: {this.state.room.followers === []? this.state.room.followers : "0"}</p>
+                                            <p>{this.state.room.tags}</p>
+                                            <p>Followers: {this.state.room.followers === []? this.state.room.followers : "0"}</p>
                                             {/* <p class="margin-left">Streams: {this.state.room.streams ? this.state.room.streams : "0"}</p> */}
                                         </div>
-                                    </div>
+                 
                                     <div className='room-button-container'>
                                         <button className='button-follow margin-bottom'>Follow</button>
                                         {/* <button className='button-like'><FontAwesomeIcon  icon="heart"  className="like-button"/></button> */}
@@ -75,7 +77,6 @@ class Room extends Component {
                                     </div>
 
                                 </div> */}
-                       
 
                         </div>
 
