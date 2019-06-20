@@ -153,6 +153,11 @@ width: 100%;
   display:flex;
   justify-content: center;
 }
+
+.box-following {
+    overflow: auto;
+    height: 300px;
+}
 /* MEDIAQUERIES */
 
 

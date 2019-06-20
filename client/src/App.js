@@ -46,8 +46,6 @@ class App extends Component {
      <Switch>
       <Route path="/" exact render={()=><RoomIndex userInSession={this.state.loggedInUser} setUser={this.setUser} />} />
       <ProtectedRoute path='/profile' user={this.state.loggedInUser} component={Profile} />
-      {/* <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
-      <Route path="/coasters/:id" component={CoasterDetails} /> */}
       <Route path="/room/:id" component={Room} />
       <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />    
       <Route path="/create" render={()=> <CreateRoom userInSession={this.state.loggedInUser} setUser={this.setUser} />} />    
@@ -67,8 +65,6 @@ class App extends Component {
      <Switch>
      <Route path="/" exact render={()=> <RoomIndex userInSession={this.state.loggedInUser} setUser={this.setUser} />} />
       <ProtectedRoute user={this.state.loggedInUser} path='/profile' component={Profile} />
-      {/* <Route path="/coasters" exact render={() => <CoastersList userInSession={this.state.loggedInUser} />} />
-      <Route path="/coasters/:id" component={CoasterDetails} /> */}
       <Route path="/map" render={()=> <Map userInSession={this.state.loggedInUser} setUser={this.setUser} />} />    
       {/* <Route path="/map" component={Map} /> */}
       <Route path="/room/:id" component={Room} />

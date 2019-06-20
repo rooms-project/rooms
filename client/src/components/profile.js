@@ -158,7 +158,7 @@ class Profile extends Component {
 
                    </div>
 
-                   <div className="box box-profile">
+                   <div className="box box-profile box-following">
 
 
 

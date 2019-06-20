@@ -84,7 +84,7 @@ width: 100%
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url('https://res.cloudinary.com/dsncbmlkl/image/upload/v1560239080/rooms-materials/jeshoots-com-606648-unsplash_1_mo0nwb.jpg');
+  background-image: url('https://res.cloudinary.com/dsncbmlkl/image/upload/v1561042191/rooms-materials/background_iqa40j.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -133,11 +133,12 @@ margin-left: 1em;
   justify-content: center;
   text-decoration: none;
   width:12em;
-  font-size: 0.8em;
+  font-size: 1em;
   padding: 6px;
-  border: 1px solid white;
+  border: 2px solid white;
   background-color: transparent;
   letter-spacing: 2px;
+  
 }
 .rooms-index .see-rooms {
   display: flex;
@@ -584,6 +585,7 @@ a:hover
 .profile-pic {
   height: 100px;
   width: 100px;
+  border-radius: 1000px;
 }
 .profileHeader {
   display: flex;

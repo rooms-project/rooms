@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "./rooms-header";
 import LoginForm from "./auth/rooms-login-form";
-import CoasterServices from "../service/coaster-services";
 import { Link } from "react-router-dom";
 import logo from "./logo/rooms-white.svg";
 
@@ -17,7 +16,6 @@ class Index extends Component {
       modal: false,
       displayInfo: true
     };
-    this.services = new CoasterServices();
     this.handleClick = this.handleClick.bind(this);
     this.setUser = this.setUser.bind(this);
   }

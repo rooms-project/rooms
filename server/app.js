@@ -67,8 +67,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); //***Deploy: No borrar esta línea
 
 
-//const coasterRoutes = require('./routes/coaster.routes')
-//app.use('/api', coasterRoutes)
 
 const apiRoutes = require('./routes/api.routes')
 app.use('/api', apiRoutes)

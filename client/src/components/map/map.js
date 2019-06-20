@@ -73,11 +73,13 @@ export class MapContainer extends Component {
 
       let followersRatio
       room.followers.length ? followersRatio = room.followers.length / maxFollowers : followersRatio = 0
-      if (followersRatio === 1) { icon.fillColor = "#ff4800"; console.log("MAXIMO", ) }
-      if (followersRatio >= 0.8 && followersRatio < 1 ) { icon.fillColor = "black" }
-      if (followersRatio >= 0.6 && followersRatio < 0.8 ) { icon.fillColor = "black" }
-      if (followersRatio >= 0.4 && followersRatio < 0.6 ) { icon.fillColor = "white" }
-      if (followersRatio < 0.4) { icon.fillColor = "white" }
+      if (followersRatio === 1) { icon.fillColor = "#ff4800" }
+      if (followersRatio >= 0.8 && followersRatio < 1 ) { icon.fillColor = "#ff6a30" }
+      if (followersRatio >= 0.6 && followersRatio < 0.8 ) { icon.fillColor = "#ff9166" }
+      if (followersRatio >= 0.4 && followersRatio < 0.6 ) { icon.fillColor = "#ffbca2" }
+      if (followersRatio < 0.4) { icon.fillColor = "#ffe5db"
+      icon.fillOpacity = 0.5
+      }
 
       if (!room.location) {
         return null;
