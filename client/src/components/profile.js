@@ -65,7 +65,7 @@ class Profile extends Component {
    }
    getRoomHeader() {
         if(this.props.loggedInUser.room.length === 1) {
-           return <p>Your room {this.state.room} <Link to={`/room/${this.props.loggedInUser.room[0]}`}>Go to your room</Link> <span onClick={() => this.deleteRoom(this.props.loggedInUser)}>Delete room</span></p>
+           return <p>Your room: <strong>{this.state.room}</strong> <Link className="gotoroom" to={`/room/${this.props.loggedInUser.room[0]}`}>See your room</Link> <span className="gotoroom" onClick={() => this.deleteRoom(this.props.loggedInUser)}>Delete room</span></p>
         }
         else return <Link to={"/create"} className="profile-create-btn">Create room</Link>
     }

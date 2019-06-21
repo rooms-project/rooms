@@ -43,3 +43,24 @@
 .profileHeader h1 {
   margin-left: 10px;
 }
+
+.gotoroom :hover {
+  color: red;
+  text-decoration: underline;
+
+}
+.gotoroom {
+  color: white;
+  border-radius:25px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  width:10em;
+  font-size: 1em;
+  padding: 6px;
+  border: 1px solid white;
+  background-color: transparent;
+  letter-spacing: 2px;
+  margin-top: 15px;
+  cursor: pointer;
+}
