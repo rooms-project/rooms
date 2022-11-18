@@ -29,7 +29,7 @@
     "react-hls": "0.0.8",
     "react-modal": "^3.8.1",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
+    "react-scripts": "5.0.1",
     "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "sass": "^1.21.0",
